@@ -19,15 +19,16 @@
     <!-- Slick -->
     {{-- <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/slick.css')}}"/>
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/slick-theme.css')}}"/> --}}
-
+    
     <!-- nouislider -->
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/nouislider.min.css')}}"/>
-
+    
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="{{asset('vendor/website/css/font-awesome.min.css')}}">
-
+    
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{asset('vendor/website/css/style.css')}}"/>
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> --}}
 </head>
 <body>
 <div id="app">
@@ -40,6 +41,7 @@
     <script src="{{asset('vendor/website/js/nouislider.min.js')}}"></script> --}}
     {{-- <script src="{{asset('vendor/website/js/jquery.zoom.min.js')}}"></script> --}}
     <script src="{{asset('vendor/website/js/main.js')}}"></script>
+    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script> --}}
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script>
         $('.alert').alert()

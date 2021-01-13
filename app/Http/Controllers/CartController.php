@@ -74,40 +74,43 @@ class CartController extends Controller
     public function updateItem(Request $request)
     {
         $item = Cart::get($request->id);
-        if(Auth::check()) {
-            $userId = Auth::user()->id;
-            Cart::get($request->id)->quantity;
-            $item =  Cart::session($userId)->update($request->id , [
-                'quantity' => array(
-                    'relative' => false,
-                    'value' => $request->quantity
-                ),
-            ]);
-            return response()->json([
-                'item' => $item , 
-                'total' => Cart::session($userId)->getTotal(),
-                'count' => Cart::getTotalQuantity(),
-                ]);
+        if(!is_null($item)){
+          if(Auth::check()) {
+              $userId = Auth::user()->id;
+              // Cart::get($request->id)->quantity;
+              $item =  Cart::session($userId)->update($request->id , [
+                  'quantity' => array(
+                      'relative' => false,
+                      'value' => $request->quantity
+                  ),
+              ]);
+              return response()->json([
+                  'item' => $item , 
+                  'total' => Cart::session($userId)->getTotal(),
+                  'count' => Cart::getTotalQuantity(),
+                  ]);
+          } else {
+              $item = Cart::update($request->id , array(
+                  'quantity' => array(
+                      'relative' => false,
+                      'value' => $request->quantity
+                  ),
+              ));
+              return response()->json([
+                  
+                  'item' => $item , 
+                  'count' => Cart::getTotalQuantity(),
+                  'quantity' => Cart::get($request->id)->quantity
+                  ]);
+          }
         } else {
-            $item = Cart::update($request->id , array(
-                'quantity' => array(
-                    'relative' => false,
-                    'value' => $request->quantity
-                ),
-            ));
-            return response()->json([
-                
-                'item' => $item , 
-                'count' => Cart::getTotalQuantity(),
-                // 'total' => Cart::getTotal()
-                ]);
+          $this->addItem($request->id);
         }
 
     }
 
     public function delete(Request $request)
     {
-
          if(Auth::check()) {
             $userId = Auth::user()->id;
             Cart::session($userId)->remove($request->id);
@@ -144,7 +147,8 @@ class CartController extends Controller
             'name' =>$cart->name,
             'totalPrice' => $cart->price,
             'quantity' => $cart->quantity,
-            'user_id' => $userId
+            'user_id' => $userId,
+            'product_id' => $cart->id
          ]);
       }
       Cart::session($userId)->clear();
@@ -155,6 +159,7 @@ class CartController extends Controller
             'name' =>$cart->name,
             'totalPrice' => $cart->price,
             'quantity' => $cart->quantity,
+            'product_id' => $cart->id
          ]);
       }
       Cart::clear();

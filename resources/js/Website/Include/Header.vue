@@ -32,7 +32,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="/" class="logo">
-									<img src="/vendor/website/img/logo.png" alt="">
+									<h2 style="margin-top:15px; color:white">Hash<span style="color:red">zo</span>.</h2>
 								</a>
 							</div>
 						</div>
@@ -41,20 +41,24 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<!-- <select class="input-select" v-model="selectedcategory">
-										<option value=""> Categories</option>
-										<option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
-									</select> -->
-									<!-- <div class=""></div> -->
-									<input class="input" placeholder="Search here" v-model="search" >
-									<div style="background:#fff" v-if="searchProducts">
-										<span v-for="product in searchProducts" :key="product.id">
-											{{product.name + ' - ' + product.price}} 
-										</span>
+								<div class="dropdown  col-sm-12" :class="search?`open` : ''">
+									<input class="input " placeholder="Search here" v-model="search" data-toggle="dropdown">
+									<div class="cart-dropdown search-item">
+									  <span v-if="!searchProducts" class="text-sm">No items found</span>
+										 <div class="cart" v-for="product in searchProducts" :key="product.id">
+											<div class="product-widget" >
+												<div class="product-img">
+													<img :src="product.image" alt="">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a :href="`/products/`+product.id">{{product.name}}</a></h3>
+													<h4 class="product-price">{{product.price}}</h4>
+												</div>
+												<!-- <button class="delete" @click.prevent="deleteItem(item.id , product.quantity)"><i class="fa fa-close"></i></button> -->
+											</div>
+										</div>
 									</div>
-									<!-- <button class="search-btn"></button> -->
-								</form>
+							</div>
 							</div>
 						</div>
 						<!-- /SEARCH BAR -->
@@ -86,7 +90,7 @@
 													<h3 class="product-name"><a :href="`/show-cartItem/`+item.id">{{item.name}}</a></h3>
 													<h4 class="product-price"><span class="qty">{{item.quantity}}</span>{{item.price}}</h4>
 												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
+												<button class="delete" @click.prevent="deleteItem(item.id , item.quantity)"><i class="fa fa-close"></i></button>
 											</div>
 										</div>
 										<div class="cart-summary">
@@ -94,22 +98,10 @@
 											<h5>SUBTOTAL: {{total}}</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">Delete All</a>
+											<a href="#" @click.prevent="cartDeleteAll">Delete All</a>
 											<a href="#">Checkout  </a>
 										</div>
 									</div>
-
-								<!-- Menu Toogle -->
-								  <!-- <div class="dropdown-menu" style="padding:10px">
-									<a v-for="item in items" :key="item.id" :href="`/show-cartItem/`+item.id">
-										<div>
-										 <i class="fa fa-bars"></i>
-										  <span>{{item.name}}</span>	
-										</div>
-										<span>{{item.price}}</span>
-									</a>
-								</div> -->
-								<!-- /Menu Toogle -->
 							</div>
 						</div>
 						<!-- /ACCOUNT -->
@@ -125,23 +117,25 @@
 </template>
 <script>
 export default {
-    props:['count' ,'cartIndc' ],
+    props:['count' ],
     data() {
         return {
+			_count:this.count,
 			selectedcategory: '',
 			search:'',
-			items: '',
+			items: [],
 			user: [],
 			total : '',
-			products: []
+			products: [],
+			cartIndc: 0,
         }
 	},
 
 	mounted() {
 		this.getUser();
 		this.getProduct();
-		// this.getItems();
-		// console.log(1)
+		this.cartUpdate();
+		console.log(this.search)
 	},
 
 	computed :{
@@ -153,17 +147,31 @@ export default {
 				});
 		 }
 	   },
-
-	   
     },
 	
   methods: {
-	//   getProducts(){
-	// 	  axios.get('website-products').then(res =>{
-	// 		  this.products = res.data
-	// 		  console.log(res.data)
-	// 	  });
-	//   },
+	  deleteItem(id , quantity){
+		  var result = confirm("Want to delete?");
+		if (result) {
+		  axios.get('/cart-delete?id='+id).then(res =>{
+			  this.cartUpdate()
+			  this.count = 0
+		  }).catch(ress=>{
+			  console.log(ress)
+		  });
+		}
+	  },
+
+	  cartDeleteAll() {
+		var result = confirm("Want to delete?");
+		if (result) {
+
+			axios.get('/cart-delete-all').then(res =>{
+				 this.cartIndc = 0
+				 this.count = 0
+			})
+		}
+	  },
 
 	 getProduct() {
 		axios.get('/website-products').then(res =>{
@@ -175,8 +183,13 @@ export default {
 		 axios.get('/get-cartItems').then((res)=>{
 			this.items =  res.data.item
 			this.total =  res.data.total
-			console.log(this.items)
 	     });
+	  },
+
+	  cartUpdate() {
+		axios.get('/get-cartItems').then((res)=>{
+		this.cartIndc =  res.data.count
+	  })
 	  },
 	  
 	  getUser() {
@@ -206,4 +219,10 @@ export default {
 	  outline: hidden;
 	  outline-width: 0;
   }
+  .search-item {
+     width: 496px;
+    margin-right: 31px;
+  }
 </style>
+
+

@@ -1,5 +1,5 @@
 <template>
-    <app-layout :count ="count" :cartIndc ="cartIndc" :target = "target">
+    <app-layout :count ="count" :target = "target">
 
        <div class="section">
 			<!-- container -->
@@ -48,11 +48,9 @@ export default {
             oneCategory: '',
             products: [],
             target: 'Category',
-            cartIndc:''
         }
     },
     mounted(){ 
-        this.getItems();
         this.getProduct();
         this.getCategory();
            
@@ -81,14 +79,7 @@ export default {
                     // console.log(res.data.categories)
                 })
             },
-
-            getItems() {
-                axios.get('/get-cartItems').then((res)=>{
-                    this.items =  res.data.item
-                    this.cartIndc = res.data.count
-                });
       },
             
-    }
     }
 </script>

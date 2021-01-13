@@ -1,5 +1,5 @@
 <template>
-    <app-layout :count ="count" :cartIndc ="cartIndc" :target = "target">
+    <app-layout :count ="count"  :target = "target">
 
       <div class="section">
 			<!-- container -->
@@ -130,12 +130,10 @@ export default {
             oneCategory: '',
             products: [],
             target: 'Product',
-            cartIndc:'',
             categoryChecked:''
         }
     },
     mounted(){ 
-        this.getItems();
         this.getProduct();
         // this.lastProducts();
         // this.lastCategories();
@@ -167,12 +165,12 @@ export default {
                 })
             },
 
-            getItems() {
-                axios.get('/get-cartItems').then((res)=>{
-                    this.items =  res.data.item
-                    this.cartIndc = res.data.count
-                });
-           },
+        //     getItems() {
+        //         axios.get('/get-cartItems').then((res)=>{
+        //             this.items =  res.data.item
+        //             this.cartIndc = res.data.count
+        //         });
+        //    },
             
 
              cartAdd(id){

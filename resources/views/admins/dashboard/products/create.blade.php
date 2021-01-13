@@ -26,7 +26,7 @@
                                                     </div>
                                                     <div class="input-group m-b-1">
 
-                                                        <input type="file" class="form-control " name="image">
+                                                        <input type="file" class="form-control " name="image[]"  multiple="multiple">
                                                     </div>
                                                     <div class="input-group m-b-1">
 
@@ -92,6 +92,8 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                    @else
+                                                     <input type="hidden"  name = "admin_id" value="{{Auth::guard('admin')->user()->id}}">
                                                     @endif
                                                     <div class="input-group m-b-1">
                                                         <textarea type="text" class="form-control" placeholder="  الوصف " name="description"> </textarea>

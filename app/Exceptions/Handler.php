@@ -67,6 +67,9 @@ class Handler extends ExceptionHandler
           case 'admin':
             return redirect()->guest(route('admins.login'));
             break;
+        case 'api':
+            return response()->json(['error' => 'Unauthenticated.' , 'code' => 401]);
+            break;
           default:
             $login = 'login';
             break;

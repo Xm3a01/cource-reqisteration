@@ -1,4 +1,5 @@
 <template>
+<app-layout  :count ="count" >
     <div class="section">
 			<!-- container -->
 			<div class="container">
@@ -28,22 +29,19 @@
 
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
-						<!-- <div id="product-imgs">
-							<div class="product-preview">
-								<img src="#" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="#" alt="">
-							</div>
-
+						 <!-- <div id="product-imgs">
 							<div class="product-preview">
 								<img :src="item.attributes.image" alt="">
 							</div>
-
 							<div class="product-preview">
 								<img :src="item.attributes.image" alt="">
 							</div>
+							<div class="product-preview">
+								<img :src="item.attributes.image" alt="">
+							</div>
+							<div class="product-preview">
+								<img :src="item.attributes.image" alt="">
+							</div>  
 						</div> -->
 					</div>
 					<!-- /Product thumb imgs -->
@@ -324,10 +322,16 @@
 			</div>
 			<!-- /container -->
 		</div>
+</app-layout>
 </template>
 
 <script>
+import App from '../../layouts/App'
+
 export default {
+    components:{
+        'app-layout': App,
+    },
     props:['item'],
     data() {
         return {

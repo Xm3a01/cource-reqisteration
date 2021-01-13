@@ -1,7 +1,7 @@
 <template>
 <div>
 <!-- Header section -->
-    <Header  :count ="count" :cartIndc = "cartIndc" />
+    <Header  :count ="count" />
 
     <!-- navbar section -->
     <Navbar :target ="target" />
@@ -22,12 +22,21 @@ import Navbar from '../Include/Navbar'
 
 export default {
     components:{Header , Navbar , Footer},
-    props:['count' , 'cartIndc' , 'target'],
+    props:['count'  , 'target'],
     data(){
         return {
             cartItem: [],
         }
     },
+    ready() {
+        this.handle = setInterval(()=> {
+
+        }, 1000)
+    },
+
+    destroyed(){
+        clearInterval(this.handle)
+    }
 
       
 }

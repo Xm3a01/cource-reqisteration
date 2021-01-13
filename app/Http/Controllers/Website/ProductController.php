@@ -6,8 +6,10 @@ use App\Order;
 use App\Mapping;
 use App\Product;
 use App\Category;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use App\Traits\Mapping as Canvert;
+use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
 
@@ -70,6 +72,32 @@ class ProductController extends Controller
         return response()->json(['user' =>$data ]);
        }
        return response()->json(['user' =>false ]); 
+    }
+
+    public function moreSeled()
+    {
+        $orders = Order::orderBy('quantity' , 'desc')->take(8)->with('product')->get();
+        $this->convert_relation($orders);
+       
+        return $orders;
+    }
+
+    public function showProduct(Product $product)
+    {
+        $images = [];
+
+        if(\Auth::check()) {
+            $userId = Auth::user()->id;
+           $item = \Cart::session($userId)->get($product->id);
+         } else {
+            $item = \Cart::get($product->id);
+         }
+        
+        foreach ($product->getMedia('products') as $key=>$item) {
+            $images[$key] = $item->getUrl(); 
+        }
+        $product['images'] = $images;
+        return view('website.product-show' , ['product' => $product , 'item' => $item]);
     }
 
 }

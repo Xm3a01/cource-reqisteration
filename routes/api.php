@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => 'auth:api'] , function(){
+    Route::post('logout', 'Api\Auth\AuthController@logout');
+    Route::resource('products','Api\ProductController')->only(['show', 'index']);
+    Route::get('categories','Api\CategoryController@index')->name('category.index');
+    Route::get('categories','Api\CategoryController@index')->name('category.index');
+    Route::get('orders/{carts}','Api\OrderController@store')->name('order.index');
+});
+
+Route::post('login', 'Api\Auth\AuthController@login');
+Route::post('register', 'Api\Auth\AuthController@register');

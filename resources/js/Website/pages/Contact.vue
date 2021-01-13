@@ -1,6 +1,6 @@
 
 <template>
-    <app-layout :count ="count" :cartIndc ="cartIndc" :target = "target">
+    <app-layout :count ="count" :target = "target">
        
        	<div class="section">
 			<!-- container -->
@@ -62,13 +62,12 @@ export default {
             count:0,
             search: '',
             target: 'Contact',
-            cartIndc:'',
             form: {},
             status: {}
         }
     },
     mounted(){ 
-         this.getItems();    
+        //  this.getItems();    
        },
     //    computed :{
     //        searchProducts() {
@@ -83,12 +82,12 @@ export default {
     //    },
        methods:{
            
-        getItems() {
-            axios.get('/get-cartItems').then((res)=>{
-                this.items =  res.data.item
-                this.cartIndc = res.data.count
-            });
-      },
+        // getItems() {
+        //     axios.get('/get-cartItems').then((res)=>{
+        //         this.items =  res.data.item
+        //         this.cartIndc = res.data.count
+        //     });
+    //   },
 
       contact() {
           

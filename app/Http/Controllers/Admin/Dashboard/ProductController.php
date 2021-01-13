@@ -39,7 +39,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // $data['admin_id'] = Auth::guard('admin')->user()->id;
+        // if(!$request->admin_id) {
+        //   $data['admin_id'] = Auth::guard('admin')->user()->id;
+        // }
+        // return $request->image;
 
         $this->validate($request , [
             'name' => 'required',
@@ -55,7 +58,9 @@ class ProductController extends Controller
          $product = Product::create($data);
             
         if($request->hasFile('image')) {
-            $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');
+            foreach ($request->image as $item) {        
+                $product->addMedia($item)->preservingOriginal()->toMediaCollection('products');
+            }
         }
         \Session::flash('success' , 'تم حفظ المنتج بنجاح');
         return redirect()->route('products.index');
@@ -87,7 +92,9 @@ class ProductController extends Controller
         $product->update($data);
         if ($request->hasFile('image')) {
             $product->clearMediaCollection('products');
-            $product->addMedia($request->image)->preservingOriginal()->toMediaCollection('products');
+            foreach ($request->image as $item) {  
+              $product->addMedia($item)->preservingOriginal()->toMediaCollection('products');
+            }
         }
 
         \Session::flash('success' , 'تم تعديل المنتج بنجاح');

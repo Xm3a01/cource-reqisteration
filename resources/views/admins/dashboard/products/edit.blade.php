@@ -32,7 +32,7 @@
                         </div>
                         <div class="input-group m-b-1">
                             
-                            <input type="file" class="form-control " name="image">
+                            <input type="file" class="form-control " name="image[]"  multiple="multiple">
                         </div>
                         <div class="input-group m-b-1">
                             

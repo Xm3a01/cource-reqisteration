@@ -15,21 +15,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+/**
+ * , 'middleware' => 'auth:admin'
+ * group 2 ['middleware' => 'is_admin']
+ */
 
 
-Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , function(){
+Route::group(['prefix' => '/dashboard'] , function(){
 
-    Route::get('/' , 'Admin\IndexController@index')->name('admins.dashboard');
-    Route::resource('products', 'Admin\Dashboard\ProductController');
-
-     Route::group(['middleware' => 'is_admin'] , function(){
-      Route::resource('categories','Admin\Dashboard\CategoryController');
-      Route::resource('orders','Admin\Dashboard\OrderController');
-      Route::resource('users','Admin\Dashboard\UserController');
-      Route::resource('admins', 'Admin\Dashboard\AdminController');
-      Route::get('super-admin/{admin}', 'Admin\Dashboard\AdminController@superAdmin')->name('super.admin');
-    });
-  });
+  Route::resource('courses', 'CCST\CourseController');
+  Route::get('/' , 'Admin\IndexController@index')->name('admins.dashboard');
+  
+  // Route::group('/' , function(){
+    Route::resource('categories','Admin\Dashboard\CategoryController');
+    Route::resource('orders','Admin\Dashboard\OrderController');
+    Route::resource('users','Admin\Dashboard\UserController');
+    Route::resource('admins', 'Admin\Dashboard\AdminController');
+    Route::get('super-admin/{admin}', 'Admin\Dashboard\AdminController@superAdmin')->name('super.admin');
+  // });
+});
 
 
   require __DIR__.'/admin.php';
@@ -46,6 +50,7 @@ Route::get('authuser','Website\ProductController@authuser')->name('auth.user');
 Route::get('/' , 'Website\IndexController@index')->name('index');
 Route::get('categories','Website\ProductController@showCategoryPage')->name('show.categories');
 Route::get('products','Website\ProductController@showProductPage')->name('show.categories');
+Route::get('products/{product}','Website\ProductController@showProduct')->name('show.product');
 Route::resource('contacts','Website\ContactController');
 
 // Cart
@@ -57,6 +62,7 @@ Route::get('get-cartItems' , 'CartController@cartItems')->name('cart.items');
 Route::get('get-cartItem/{id}' , 'CartController@getItem')->name('cart.item');
 Route::get('show-cartItem/{id}' , 'CartController@showCart')->name('show.cartItem');
 Route::get('save-order' , 'CartController@saveOrder')->name('save.order');
+Route::get('more-sels','Website\ProductController@moreSeled');
 
 //
 Route::get('test','CartController@saveOrder');

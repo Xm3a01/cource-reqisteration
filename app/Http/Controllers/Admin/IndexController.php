@@ -10,6 +10,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('admins.dashboard.index');
+        return view('admins.dashboard.courses.index');
     }
 }
