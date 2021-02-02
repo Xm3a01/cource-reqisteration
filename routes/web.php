@@ -1,6 +1,5 @@
 <?php
 
-use App\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,14 +22,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/dashboard'] , function(){
 
-  Route::resource('courses', 'CCST\CourseController');
+  Route::resource('courses', 'Admin\Dashboard\CCST\CourseController');
+  Route::resource('events','Admin\Dashboard\CCST\EventController');
   Route::get('/' , 'Admin\IndexController@index')->name('admins.dashboard');
   
   // Route::group('/' , function(){
-    Route::resource('categories','Admin\Dashboard\CategoryController');
-    Route::resource('orders','Admin\Dashboard\OrderController');
-    Route::resource('users','Admin\Dashboard\UserController');
-    Route::resource('admins', 'Admin\Dashboard\AdminController');
+    Route::resource('students','Admin\Dashboard\CCST\StudentController');
+    Route::resource('managers', 'Admin\Dashboard\CCST\ManagerController');
     Route::get('super-admin/{admin}', 'Admin\Dashboard\AdminController@superAdmin')->name('super.admin');
   // });
 });
@@ -65,7 +63,10 @@ Route::get('save-order' , 'CartController@saveOrder')->name('save.order');
 Route::get('more-sels','Website\ProductController@moreSeled');
 
 //
-Route::get('test','CartController@saveOrder');
+Route::get('test',function () {
+  \Session::flash('error', "hello word");
+  return back();
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

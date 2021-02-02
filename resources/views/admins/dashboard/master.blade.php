@@ -6,14 +6,14 @@
   @include('admins.dashboard._includes.styles')
 </head>
 
-<body class="">
+<body class="" style="background-color: #f4f3ef;">
   <div class="wrapper ">
 
     @include('admins.dashboard._includes.sidebar')              
 
     <div class="main-panel">
       <!-- Navbar -->
-    @include('admins.dashboard._includes.navbar')
+    @include('admins.dashboard._includes.navbar' , ['title' => $title ?? "Dashboard"] )
       
       <!-- End Navbar -->
       <div class="content">
@@ -23,7 +23,7 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  @include('admins.dashboard._includes.sidebar')
+  @include('admins.dashboard._includes.scripts')
   @include('admins.dashboard._includes.messages')
 
 </body>

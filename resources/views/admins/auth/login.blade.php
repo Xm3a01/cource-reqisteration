@@ -1,45 +1,44 @@
+@include('admins.dashboard._includes.styles')
 
-@extends('admins.layouts.app')
-
-@section('content')
-<div class="min-h-screen flex items-center">
-    <div class="bg-white w-full max-w-lg rounded-lg shadow overflow-hidden mx-auto">
-        <div class="py-4 px-6">
-            <div class="text-center font-bold text-gray-700 text-3xl">Hash</div>
-            <div class="mt-1 text-center font-bold text-gray-600 text-xl">Admin Login</div>
-            <form action="{{ route('admins.login') }}" method="POST">
-                @csrf
-                <div class="mt-4 w-full">
-                    <input type="email" name="email" placeholder="Email address"
-                           class="w-full mt-2 py-3 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"/>
-                    @error('email')
-                    <p class="text-red-500 text-xs mt-4">
-                        {{ $message }}
-                    </p>
-                    @enderror
-                </div>
-                <div class="mt-4 w-full">
-                    <input type="password" name="password" placeholder="Password"
-                           class="w-full mt-2 py-3 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"/>
-                    @error('password')
-                    <p class="text-red-500 text-xs italic mt-4">
-                        {{ $message }}
-                    </p>
-                    @enderror
-                </div>
-                <div class="flex justify-between items-center mt-6">
-                    {{-- <a href="#" class="text-gray-600 text-sm hover:text-gray-500">Forget password?</a> --}}
-                    <button type="submit"
-                            class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-400 focus:outline-none">
-                        Login
-                    </button>
-                </div>
-            </form>
+<div class="container">
+   
+    <div class="card card-nav-tabs col-md-6 offset-md-3 mt-38 justify-center">
+        
+        <div class="card-body items-center">
+          <h4 class="card-title">Dashboard Login</h4>
+         
+            <div class="">
+    
+                <form action="/test">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      @error('email')
+                          <small id="emailHelp" class="form-text text-muted text-danger">{{ $message }}</small> 
+                       </p>
+                      @enderror
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" value="">
+                            Remmber me
+                            <span class="form-check-sign">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                  </form>
+            </div>
         </div>
-        <div class="flex items-center justify-center py-4 bg-gray-100 text-center">
-            {{-- <h1 class="text-gray-600 text-sm">Don't have an account</h1>
-            <a href="/register" class="text-blue-600 font-bold mx-2 text-sm hover:text-blue-500">Register now</a> --}}
-        </div>
-    </div>
+      </div>
 </div>
-@endsection
+
+
+  @include('admins.dashboard._includes.scripts')
+  @include('admins.dashboard._includes.messages')

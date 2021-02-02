@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CCST;
+namespace App\Http\Controllers\Admin\Dashboard\CCST;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ class EventController extends Controller
    
     public function index()
     {
-        // return "";  0999627996
+        return view('admins.dashboard.events.index');
     }
 
     

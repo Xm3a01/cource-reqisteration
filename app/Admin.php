@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Course;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -20,7 +21,10 @@ class Admin  extends Authenticatable implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','is_supervisor','phone'
+        'name', 'email',
+        'password','is_supervisor',
+        'phone' , 'whatsapp',
+        'address' , 'gender'
     ];
 
     /**
@@ -46,23 +50,28 @@ class Admin  extends Authenticatable implements HasMedia
         return $this->getFirstMediaUrl('avatars');
     }
 
-    public function getProductAmountAttribute()
-    {
-        return $this->products->sum('productAmount');
-    }
+    // public function getProductAmountAttribute()
+    // {
+    //     return $this->products->sum('productAmount');
+    // }
 
-    public function getFixedAmountAttribute()
-    {
-        return $this->products->sum('fiexdAmount');
-    }
+    // public function getFixedAmountAttribute()
+    // {
+    //     return $this->products->sum('fiexdAmount');
+    // }
 
-    public function getTotalPaymentAttribute()
-    {
-        return $this->fixedAmount - $this->ProductAmount;
-    }
+    // public function getTotalPaymentAttribute()
+    // {
+    //     return $this->fixedAmount - $this->ProductAmount;
+    // }
 
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
     }
 }

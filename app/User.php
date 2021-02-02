@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Course;
 use Spatie\MediaLibrary\HasMedia;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -19,7 +20,13 @@ class User extends Authenticatable implements HasMedia , JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar' , 'phone'
+        'name', 'username',
+        'password', 'avatar' ,
+        'phone' , 'address',
+        'gender','birthday',
+        'level','job_title',
+        'coures_time','whenWasthat',
+        'whatsapp','email',
     ];
 
     /**
@@ -54,5 +61,12 @@ class User extends Authenticatable implements HasMedia , JWTSubject
     {
         return [];
     }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class , 'courses_user');
+    }
+
+    
 
 }

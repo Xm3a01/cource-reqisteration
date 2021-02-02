@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Dashboard;
+namespace App\Http\Controllers\Admin\Dashboard\CCST;
 
 use App\Admin;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class ManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::where('is_supervisor' , 1)->get();
-        return view('admins.dashboard.managers.index' , ['admins' => $admins]);
+        $managers= Admin::where('is_supervisor' , 1)->paginate(100);
+        return view('admins.dashboard.managers.index' , ['managers' => $managers]);
     }
 
     /**
@@ -29,7 +27,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admins.dashboard.admins.create');
+        return view('admins.dashboard.managers.create');
     }
 
     /**
@@ -42,9 +40,12 @@ class AdminController extends Controller
     {
         $data = $this->validate($request , [
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:admins',
             'password' => 'required',
-            'phone' => 'required'
+            'phone' => 'required',
+            'whatsapp' => 'required',
+            'address' => 'required',
+            'gender' => 'required'
         ]);
 
 
@@ -58,7 +59,7 @@ class AdminController extends Controller
         }
 
         \Session::flash('success' , 'تم حفظ المشرف بنجاح');
-        return redirect()->route('admins.index');
+        return redirect()->route('managers.index');
     }
 
     /**
@@ -78,9 +79,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(Admin $manager)
     {
-        return view('admins.dashboard.admins.edit' , ['admin' => $admin]);
+        return view('admins.dashboard.managers.edit' , ['manager' => $manager]);
     }
 
     /**
@@ -90,27 +91,25 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Admin $manager)
     {
-        $admin->update($request->except(['avatar' , 'password']));
+        $manager->update($request->except(['avatar' , 'password']));
 
         if($request->has('password') && $request->password != ''){
-            $admin->password = Hash::make($request->password);
-            $admin->save();
+            $manager->password = Hash::make($request->password);
+            $manager->save();
         }
 
 
         if ($request->hasFile('avatar')) {
-            $admin->clearMediaCollection('avatars');
-            $admin->addMedia($request->avatar)->preservingOriginal()->toMediaCollection('avatars');
+            $manager->clearMediaCollection('avatars');
+            $manager->addMedia($request->avatar)->preservingOriginal()->toMediaCollection('avatars');
         }
 
         \Session::flash('success' , 'تم تعديل المشرف بنجاح');
         
-        if($request->edit_admin == 'edit_admin') {
-            return redirect()->route('admins.index');
-        }
-        return back();
+         return redirect()->route('managers.index');
+    
 
     }
 
@@ -120,13 +119,15 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(admin $admin)
+    public function destroy(admin $manager)
     {
-        $admin->clearMediaCollection('avatars');
-        $admin->delete();
+        if($manager->avater) {
+           $manager->clearMediaCollection('avatars');
+        }
+        $manager->delete();
 
         \Session::flash('success' , 'تم حذف المشرف بنجاح');
-        return redirect()->route('admins.index');
+        return redirect()->route('managers.index');
     }
 
 
