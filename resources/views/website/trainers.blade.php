@@ -26,6 +26,7 @@
                 <a href=""><i class="icofont-facebook"></i></a>
                 <a href=""><i class="icofont-instagram"></i></a>
                 <a href=""><i class="icofont-linkedin"></i></a>
+                <a href=""><i class="icofont-skype"></i></a>
               </div>
             </div>
           </div>

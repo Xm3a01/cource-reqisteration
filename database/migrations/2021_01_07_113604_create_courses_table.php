@@ -17,10 +17,12 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('h_week');
+            $table->string('period');
             $table->float('feeses'); 
             $table->integer('seats')->nullable(); 
             $table->text('description');
             $table->foreignId('admin_id')->nullable()->constrained();
+            $table->foreignId('trainer_id')->nullable()->constrained();
 
             $table->timestamps();
         });

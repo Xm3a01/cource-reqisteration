@@ -12,80 +12,36 @@
                         <div class="container" data-aos="fade-up">
                             <h3 class="mb-5">Latest Courses</h3>
                             <div class="row" data-aos="zoom-in" data-aos-delay="100">
-
+                            @foreach ($courses as $index => $course)     
                                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                     <div class="course-item">
-                                        <img src="assets/images/course-1.jpg" class="img-fluid" alt="...">
+                                        <img src="{{$course->image}}" class="img-fluid" alt="..." style="width: 311.77px; height: 189.86px !important;">
                                         <div class="course-content">
                                             <div class="d-flex justify-content-between align-items-center mb-3">
                                                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                                                    <a href="reg.html" class="get-started-btn">Get Started</a>
+                                                    <a href="{{route('register.show')}}" class="get-started-btn rounded-sm">Get Started</a>
                                                 </div>
-                                                <p class="price">$169</p>
+                                                <p class="price">${{$course->feeses}}</p>
                                             </div>
-                                            <p>Et architecto provident deleniti facere repellat nobis iste. </p>
 
-                                            <h3><a href="course-details.html">Course Details</a></h3>
+                                            <div class="ml-1">
+                                                
+                                                <p style="font-size: 0.72rem; color:#ccc">{{$course->name}}</p>
+                                                <p>{{ Str::limit($course->description , 60 )}}</p>
+    
+                                                <h3><a href="{{route('course.show', $course->id)}}">Course Details</a></h3>
+                                            </div>
                                             <div class="trainer d-flex justify-content-between align-items-center">
-                                                <div class="trainer-profile d-flex align-items-center">
-
-                                                </div>
-                                                <div class="trainer-rank d-flex align-items-center">
-                                                </div>
+                                                {{-- <div class="trainer-profile d-flex align-items-center">
+                                                    
+                                                </div> --}}
+                                                {{-- <div class="trainer-rank d-flex align-items-center">
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div> <!-- End Course Item-->
-
-                                <!--div class="row" data-aos="zoom-in" data-aos-delay="100">
-                          <a href="reg.html" class="get-started-btn">Get Started</a-->
-                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                                    <div class="course-item">
-                                        <img src="assets/images/course-2.jpg" class="img-fluid" alt="...">
-                                        <div class="course-content">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                                                    <a href="reg.html" class="get-started-btn">Get Started</a>
-                                                </div>
-
-                                                <p class="price">$169</p>
-                                            </div>
-                                            <p>Et architecto provident deleniti facere repellat nobis iste. </p>
-
-                                            <h3><a href="course-details.html">Course Details</a></h3>
-                                            <div class="trainer d-flex justify-content-between align-items-center">
-                                                <div class="trainer-profile d-flex align-items-center">
-
-                                                </div>
-                                                <div class="trainer-rank d-flex align-items-center">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- End Course Item-->
-                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                                    <div class="course-item">
-                                        <img src="assets/images/course-3.jpg" class="img-fluid" alt="...">
-                                        <div class="course-content">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <div class="row" data-aos="zoom-in" data-aos-delay="100">
-                                                    <a href="reg.html" class="get-started-btn">Get Started</a>
-                                                </div>
-                                                <p class="price">$169</p>
-                                            </div>
-                                            <p>Et architecto provident deleniti facere repellat nobis iste. </p>
-
-                                            <h3><a href="course-details.html">Course Details</a></h3>
-                                            <div class="trainer d-flex justify-content-between align-items-center">
-                                                <div class="trainer-profile d-flex align-items-center">
-
-                                                </div>
-                                                <div class="trainer-rank d-flex align-items-center">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- End Course Item-->
+                                @endforeach
                             </div>
                         </div>
                     </section><!-- End Cource Details Tabs Section -->
@@ -96,20 +52,12 @@
                             <h3 class="mb-5">Best Course</h3>
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <img src="/assets/images/course-details.jpg" class="img-fluid" alt="">
-                                    <h3>Et enim incidunt fuga tempora</h3>
+                                    <img src="{{$course->image}}" class="img-fluid" alt="">
+                                    <h3>{{$course->name}}</h3>
                                     <p>
-                                        Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus
-                                        quam autem. Atque nostrum voluptatum laudantium a doloremque enim et ut dicta.
-                                        Nostrum ducimus est iure minima totam doloribus nisi ullam deserunt. Corporis aut
-                                        officiis sit nihil est. Labore aut sapiente aperiam.
-                                        Qui voluptas qui vero ipsum ea voluptatem. Omnis et est. Voluptatem officia
-                                        voluptatem adipisci et iusto provident doloremque consequatur. Quia et porro est. Et
-                                        qui corrupti laudantium ipsa.
-                                        Eum quasi saepe aperiam qui delectus quaerat in. Vitae mollitia ipsa quam. Ipsa aut
-                                        qui numquam eum iste est dolorum. Rem voluptas ut sit ut.
+                                        {{$course->description}}.
                                     </p>
-                                    <a href="reg.html" class="get-started-btn rounded-sm ml-1 mt-2">Get Started</a>
+                                    <a href="{{route('register.show' , $course->id)}}" class="get-started-btn rounded-sm ml-1 mt-2">Get Started</a>
                                 </div>
 
 
@@ -122,17 +70,17 @@
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Course Fee</h5>
-                                        <p>$165</p>
+                                        <p>${{$course->feeses}}</p>
                                     </div>
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Available Seats</h5>
-                                        <p>30</p>
+                                        <p>{{$course->setes}}</p>
                                     </div>
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Schedule</h5>
-                                        <p>5.00 pm - 7.00 pm</p>
+                                        <p>{{$course->date}}</p>
                                     </div>
 
                                 </div>

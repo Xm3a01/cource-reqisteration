@@ -2,41 +2,82 @@
 
 @section('content')
 
-    <div class="breadcrumbs" data-aos="fade-in">
-        <div class="container">
-            <h2>About Us</h2>
-        </div>
+<div class="breadcrumbs" data-aos="fade-in">
+    <div class="container">
+      <h2>Register</h2>
     </div>
+  </div>
+  <section id="contact" class="contact">
+   
+    <div class="container" data-aos="fade-up">
 
-    <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
+      <div class="row mt-5">
 
-            <div class="row">
-                <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-                    <img src="images/banner3.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                    <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore
-                        magna aliqua.
-                    </p>
-                    <ul>
-                        <li><i class="icofont-check-circled"></i>“Comboni College of Science and Technology .</li>
-                        <li><i class="icofont-check-circled"></i> is an international educational community that aims at
-                            fostering an inclusive society in which every member contributes </li>
-                        <li><i class="icofont-check-circled"></i> to the common good through his/her scientific skills and
-                            personal commitment and values”</li>
-                    </ul>
+        <div class="col-lg-4">
+          </div>
+        </div>
 
+        <div class="col-lg-8 mt-5 mt-lg-0">
+          
 
-                </div>
+          <form action="" method="">
+            <h1>Register:</h1>
+            <div class="tab"> Personal INFO
+              <p><label>User Name</label><input type="text" placeholder="First name..." oninput="this.className = ''" name="fname"></p>
+              <p> <label>Sure Name</label><input type="text" placeholder="Sure name..." oninput="this.className = ''" name="surname"></p>
+              <p><label>Birthday</label><input type="date"  oninput="this.className = ''"  placeholder="  " data-rule="minlen:4" name="birthday" required/></p>
+              <p>
+                <label for="gender">Choose Gender</label>
+                <select name="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Femal</option>
+                </select> 
+              </p>
+            </div>
+            
+            <div class="tab">Contact Info:
+              <p><label>Address</label><input type="address" oninput="this.className = ''"   placeholder="Address"  data-msg="Please enter a valid email" name="address" required/>
+          
+              <p><label>Email</label><input type="email " placeholder="E-mail..." oninput="this.className = ''" name = "email"></p>
+              <p><label>Phone</label><input type="tel" placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
+              <p><label>Passwprd</label><input type="password" placeholder="Password..." oninput="this.className = ''" name="password"></p>
+
+            </div>
+            <div class="tab">Addition INFO
+              <p><label>Level number was studied</label><input type="number" oninput="this.className = ''" name="level"   placeholder="heightest level studies"  data-msg="Please enter a valid email" required/></p>
+              <p>  <label>Select Month when was that</label><input type="date" oninput="this.className = ''" name="history"  placeholder="When was that"  data-msg="Please enter a valid email" required/></p> 
+            
+            <p> <label>Job Title</label> <input type="text" oninput="this.className = ''" name="level"  placeholder="job"  data-msg="Please enter a valid email" required/>
+          </p>
+          
+          
+          <p>    <label>Select Time</label> <select name="Time">
+            <option value="Morning">Morning</option>
+            <option value="Evenning">Morning</option>
+          </select> 
+          </p>
+          </div>
+          
+            
+            <div style="overflow:auto;">
+              <div style="float:right;">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+              </div>
+            </div>
+      
+            <div style="text-align:center;margin-top:40px;">
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
             </div>
 
         </div>
-    </section>
 
-    </section>
+      </div>
+
+    </div>
+  </section>
 
 @endsection

@@ -42,7 +42,7 @@ class CourseController extends Controller
             'h_week.regex' => 'The field H Week must be  postive number'
             ]);
 
-        $course = Course::create($request->all());
+        $course = Course::create($request->except('image'));
 
         if ($request->has('image')) {
             $this->storeImage($course , $request->image , 'courses');

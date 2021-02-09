@@ -25,6 +25,7 @@ Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , functio
 
   Route::resource('courses', 'Admin\Dashboard\CCST\CourseController');
   Route::resource('events','Admin\Dashboard\CCST\EventController');
+  Route::resource('trainers','Admin\Dashboard\CCST\TrainerController');
   Route::resource('galleries','Admin\Dashboard\CCST\GalleryController');
   Route::get('/' , 'Admin\IndexController@index')->name('admins.dashboard');
   

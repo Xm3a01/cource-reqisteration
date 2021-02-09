@@ -52,10 +52,20 @@
                         </div>
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
+                                <label>Time</label>
+                                <select name="Time" class="form-control  select">
+                                    <option value="">Select Time</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evenning">Morning</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <label for="image"> Course image <a href="">attcah image</a> </label>
                                 <input type="file" class="form-control-file" placeholder="" name="image" id="image">
-                                
-
                             </div>
                         </div>
                     </div>
