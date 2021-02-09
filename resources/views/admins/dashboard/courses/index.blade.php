@@ -9,7 +9,7 @@
         <div class="card-header">
             <h4 class="card-title"> All Courses</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body custom-table">
             <div class="table">
                 <table class="table">
                     <thead class=" text-primary">

@@ -16,3 +16,4 @@
 <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
 <link href="{{asset('vendor/css/toastr-rtl.min.css')}}" rel="stylesheet" />
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
+<link href="{{asset('assets/css/mystyle.css')}}" rel="stylesheet" />

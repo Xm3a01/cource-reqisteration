@@ -8,49 +8,45 @@
                 <h5 class="card-title">Add Event</h5>
             </div>
             <div class="card-body">
-                <form>
+                <form action="{{route('events.store')}}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
                                 <label>Event Name</label>
-                                <input type="text" class="form-control" placeholder="Name">
+                                <input type="text" class="form-control" placeholder="Name" name="name">
                             </div>
                         </div>
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
                                 <label>Plase</label>
-                                <input type="text" class="form-control" placeholder="Address">
+                                <input type="text" class="form-control" placeholder="Address" name="place">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 pr-1">
+                        <div class="col-md-6 pl-3">
                             <div class="form-group">
-                                <label>time</label>
-                                <input type="time" class="form-control" placeholder="Phone">
+                                <label> <button type="submit" class="btn btn-primary ">Upload image</button></label>
+                                <input type="file" class="form-control" placeholder=" " name="image">
+
                             </div>
                         </div>
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
                                 <label>Date</label>
-                                <input type="date" class="form-control" placeholder=" ">
+                                <input type="date" class="form-control" placeholder=" " name="date">
 
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                                <label>image</label>
-                                <input type="file" class="form-control" placeholder=" ">
-
-                            </div>
-                        </div>
-                        <div class="col-md-6 pl-1">
+                        
+                        <div class="col-md-12 pl-3">
 
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control textarea"></textarea>
+                                <textarea class="form-control textarea" name="content"></textarea>
                             </div>
                         </div>
                     </div>

@@ -31,6 +31,7 @@ class CourseController extends Controller
    
     public function store(Request $request)
     {
+
         $this->validate($request , [
             'name' => 'required',
             'h_week' => 'required|regex:/^[0-9]+$/',
@@ -41,7 +42,7 @@ class CourseController extends Controller
             'h_week.regex' => 'The field H Week must be  postive number'
             ]);
 
-        $course = Course::create($request->except('image'));
+        $course = Course::create($request->all());
 
         if ($request->has('image')) {
             $this->storeImage($course , $request->image , 'courses');

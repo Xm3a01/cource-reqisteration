@@ -10,7 +10,7 @@ trait HasImage {
         $model->addMedia($image)->preservingOriginal()->toMediaCollection($collection);
     }
 
-    public function deleteImage($model , $image , $collection)
+    public function deleteImage($model , $image = null, $collection)
     {
         $model->clearMediaCollection($collection);
     }

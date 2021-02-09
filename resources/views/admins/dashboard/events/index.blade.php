@@ -10,25 +10,24 @@
         <div class="card-header">
             <h4 class="card-title"> All Events</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body custom-table">
             <div class="table">
                 <table class="table">
                     <thead class=" text-primary">
                         <tr>
                             <th>Event Name</th>
                             <th>place</th>
-                            <th>time</th>
-                            <th>comment</th>
+                            <th>content</th>
                             <th>Action </th>
                           
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($events as $event)
                         <tr>
-                            <td>Exmaple</td>
-                            <td>Exmaple</td>
-                            <td>Exmaple</td>
-                            <td>Exmaple</td>
+                            <td>{{$event->name}}</td>
+                            <td>{{$event->place}}</td>
+                            <td>{{$event->content}}</td>
                             <td>
                                 <a  href="{{route('events.edit' , 1)}}" class="btn btn-round btn-primary"><i
                                         class="nc-icon nc-settings"></i></a>
@@ -38,9 +37,12 @@
 
                             </td>
                         </tr>
+                            
+                        @endforeach
 
                     </tbody>
                 </table>
+                {{$events->links()}}
             </div>
         </div>
 

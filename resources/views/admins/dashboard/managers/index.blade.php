@@ -7,7 +7,7 @@
     </td>
 
     <div class="card">
-        <div class="card-header">
+        <div class="card-header custom-table">
             <h4 class="card-title"> All Managers</h4>
         </div>
         <div class="card-body">

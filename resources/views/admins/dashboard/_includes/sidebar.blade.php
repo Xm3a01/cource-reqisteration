@@ -28,14 +28,7 @@
 
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
-        <!-- <a href="https://www.creative-tim.com" class="simple-text logo-mini">
-        <div class="logo-image-small">
-          <img src="../assets/img/logo-small.png">
-        </div>-->
-        <!-- <p>CT</p> -->
-        <!-- </a>-->
         <a href="/dashboard" class="simple-text logo-small">
-            {{-- Short Courses-CCST --}}
          <div class="logo-image-big">
           <img src="/assets/images/favico.ico" height="90" width="100" class="col-md-6 offset-md-3">
         </div>
@@ -49,16 +42,36 @@
                     <p>Home</p>
                 </a>
             </li>
-            <!-- <li>
-          <a href="./managers.html">
-            <i class="nc-icon nc-diamond"></i>
-            <p>Icons</p>
-          </a>
-        </li>-->
+            @if (Auth::guard('admin')->user()->is_supervisor)
             <li class="{{ request()->is('*courses*') ? 'active' : '' }}">
                 <a href="{{ route('courses.index') }}">
                     <i class="nc-icon nc-caps-small"></i>
                     <p>courses</p>
+                </a>
+            </li>
+            <li class="{{ request()->is('*events*') ? 'active' : '' }}">
+                <a href="{{ route('events.index') }}">
+                    <i class="nc-icon nc-bell-55"></i>
+                    <p>Events</p>
+                </a>
+            </li>
+            <li class="{{ request()->is('*galleries*') ? 'active' : '' }}">
+                <a href="{{ route('galleries.index') }}">
+                    <i class="nc-icon nc-caps-small"></i>
+                    <p>Gallery</p>
+                </a>
+            </li>
+            @else
+            <li class="{{ request()->is('*courses*') ? 'active' : '' }}">
+                <a href="{{ route('courses.index') }}">
+                    <i class="nc-icon nc-caps-small"></i>
+                    <p>courses</p>
+                </a>
+            </li>
+            <li class="{{ request()->is('*events*') ? 'active' : '' }}">
+                <a href="{{ route('events.index') }}">
+                    <i class="nc-icon nc-bell-55"></i>
+                    <p>Events</p>
                 </a>
             </li>
             <li class="{{ request()->is('*managers*') ? 'active' : '' }}">
@@ -74,24 +87,13 @@
                 </a>
             </li>
             <li>
-            <li class="{{ request()->is('*events*') ? 'active' : '' }}">
-                <a href="{{ route('events.index') }}">
-                    <i class="nc-icon nc-bell-55"></i>
-                    <p>Events</p>
+            <li class="{{ request()->is('*galleries*') ? 'active' : '' }}">
+                <a href="{{ route('galleries.index') }}">
+                    <i class="nc-icon nc-caps-small"></i>
+                    <p>Gallery</p>
                 </a>
             </li>
-
-            <!--<a href="./typography.html">
-            <i class="nc-icon nc-caps-small"></i>
-            <p>Typography</p>
-          </a>
-        </li>
-        <li class="active-pro">
-          <a href="./upgrade.html">
-            <i class="nc-icon nc-spaceship"></i>
-            <p>Upgrade to PRO</p>
-          </a>
-        </li>-->
+            @endif
         </ul>
     </div>
 </div>

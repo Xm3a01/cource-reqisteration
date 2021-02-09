@@ -9,10 +9,11 @@
          
             <div class="">
     
-                <form action="/test">
+                <form action="{{route('admins.login')}}" method="POST">
+                  @csrf
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
                       @error('email')
                           <small id="emailHelp" class="form-text text-muted text-danger">{{ $message }}</small> 
                        </p>
@@ -20,7 +21,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
