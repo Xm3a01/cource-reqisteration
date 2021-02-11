@@ -53,10 +53,10 @@
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
                                 <label>Time</label>
-                                <select name="Time" class="form-control  select">
+                                <select name="period" class="form-control  select">
                                     <option value="">Select Time</option>
                                     <option value="Morning">Morning</option>
-                                    <option value="Evenning">Morning</option>
+                                    <option value="Evenning">Evenning</option>
                                   </select>
                             </div>
                         </div>

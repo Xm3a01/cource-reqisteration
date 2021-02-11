@@ -36,6 +36,7 @@ class CourseController extends Controller
             'name' => 'required',
             'h_week' => 'required|regex:/^[0-9]+$/',
             'feeses' => 'required|',
+            'period' => 'required',
             'description' => 'required'
         ] , [
             'feeses.regex' => 'The field Feeses must float and postive number',
@@ -45,7 +46,8 @@ class CourseController extends Controller
         $course = Course::create($request->except('image'));
 
         if ($request->has('image')) {
-            $this->storeImage($course , $request->image , 'courses');
+            // $this->storeImage($course , $request->image , 'courses');
+            $course->addMedia($request->image)->toMediaCollection('courses');
         }
 
         \Session::flash('success' , 'Course Successfully created');
@@ -78,7 +80,7 @@ class CourseController extends Controller
    
     public function destroy(Course $course)
     {
-        $this->deleteImage($course , $course->image , 'coursese');
+        $course->clearMediaCollection($request->image);
         $course->delete();
 
         \Session::flash('success' , 'Course Successfully deleted');

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
+use App\Ads;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {
@@ -14,6 +15,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('website.event');
+        $events = Ads::latest()->paginate(100);
+
+        return view('website.event',['events' => $events]);
     }
 }

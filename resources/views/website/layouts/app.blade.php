@@ -42,6 +42,8 @@
 
     @include('website.includes._scripts')
 
+    @yield('scripts')
+
 </body>
 
 </html>

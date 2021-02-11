@@ -17,7 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         $courses = Course::latest()->take(3)->get();
-        $events = Ads::latest()->take(4)->get();
+        $events = Ads::latest()->take(5)->get();
+        // dd($courses);
         $course = Course::latest()->first();
 
         return view('website.home',[

@@ -5,37 +5,33 @@
     <div class="col-md-8">
         <div class="card card-user">
             <div class="card-header">
-                <h5 class="card-title">Add Event</h5>
+                <h5 class="card-title">Edit gallery</h5>
             </div>
             <div class="card-body">
-                <form action="{{route('events.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('galleries.update' , $gallery->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
+
                     <div class="row">
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
-                                <label>Event Name</label>
-                                <input type="text" class="form-control" placeholder="Name" name="name">
+                                <label> Tile</label>
+                                <input type="text" class="form-control" placeholder="Title" name="title" value="{{$gallery->title}}">
                             </div>
                         </div>
-                        <div class="col-md-6 pl-1">
+                        <div class="col-md-6 pl-2">
                             <div class="form-group">
-                                <label>Plase</label>
-                                <input type="text" class="form-control" placeholder="Address" name="place">
+                                <label for="image">Date</label>
+                                <input type="datetime-local" class="form-control" placeholder="" name="date" value="{{$gallery->date}}">
+
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 pl-3">
+                        <div class="col-md-4 pl-3">
                             <div class="form-group">
                                 <label for="image"> <button type="submit" class="btn btn-primary ">Upload image</button></label>
                                 <input type="file" class="form-control" placeholder="" name="image">
-
-                            </div>
-                        </div>
-                        <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                                <label>Date</label>
-                                <input type="datetime-local" class="form-control" placeholder=" " name="date">
 
                             </div>
                         </div>
@@ -46,7 +42,7 @@
 
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control textarea" name="content"></textarea>
+                                <textarea class="form-control textarea" name="content">{{$gallery->content}}</textarea>
                             </div>
                         </div>
                     </div>

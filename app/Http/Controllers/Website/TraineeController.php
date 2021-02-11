@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
+use App\Trainer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TraineeController extends Controller
 {
@@ -14,6 +15,7 @@ class TraineeController extends Controller
      */
     public function index()
     {
-        return view('website.trainers');
+        $trainers = Trainer::with('links')->get();
+        return view('website.trainers' , ['trainers' => $trainers]);
     }
 }

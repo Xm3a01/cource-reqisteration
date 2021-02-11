@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
+use App\Gallery;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class GalleryController extends Controller
 {
@@ -14,6 +15,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-       return view('website.gallery');
+        $galleries = Gallery::latest()->paginate(100);
+       return view('website.gallery' , ['galleries' => $galleries]);
     }
 }

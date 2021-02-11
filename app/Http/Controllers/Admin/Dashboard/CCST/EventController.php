@@ -14,6 +14,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Ads::paginate(100);
+        // dd($events);
         return view('admins.dashboard.events.index' , ['events' => $events]);
     }
 
@@ -26,6 +27,7 @@ class EventController extends Controller
    
     public function store(Request $request)
     {
+        // dd($request->image);
         $this->validate($request , [
             'name' => 'required',
             'content' => 'required',
@@ -35,7 +37,9 @@ class EventController extends Controller
         $event = Ads::create($request->except('image'));
 
         if ($request->hasFile('image')) {
-            $this->storeImage($event , $request->image , 'events');
+            //  $this->storeImage($event , $request->image , 'events');
+
+            $event->addMedia($request->image)->toMediaCollection('events');
         }
         \Session::flash('success' , 'Ads save successfully');
         return redirect()->route('events.index');
@@ -45,7 +49,7 @@ class EventController extends Controller
    
     public function edit(Ads $event)
     {
-       return view('admins.dashboard.events.create' , ['event' =>  $event]);
+       return view('admins.dashboard.events.edit' , ['event' =>  $event]);
     }
 
     
@@ -73,8 +77,9 @@ class EventController extends Controller
     
     public function destroy(Ads $event)
     {
-        if ($request->hasFile('image')) {
-            $this->deleteImage($event , 'events');
+        if ($event->image) {
+            // $this->deleteImage($event , 'events');
+            $event->clearMediaCollection('events');
         }
 
         $event->delete();

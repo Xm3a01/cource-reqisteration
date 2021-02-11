@@ -3,7 +3,7 @@
 @section('content')
 
     <td class="text-center">
-        <a  href="{{route('events.create')}}" class="btn btn-round btn-primary">Add Event</a>
+        <a  href="{{route('trainers.create')}}" class="btn btn-round btn-primary">Add Trainer</a>
     </td>
 
     <div class="card">
@@ -15,24 +15,26 @@
                 <table class="table">
                     <thead class=" text-primary">
                         <tr>
-                            <th>Event Name</th>
-                            <th>place</th>
-                            <th>content</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Job Title</th>
+                            <th>description</th>
                             <th>Action </th>
                           
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($events as $event)
+                        @foreach ($trainers as $trainer)
                         <tr>
-                            <td>{{$event->name}}</td>
-                            <td>{{$event->place}}</td>
-                            <td>{{Str::limit($event->content , 80 , '')}}</td>
+                            <td><img src="{{$trainer->image}}" alt="" height="40" width="40" class="rounded-full"></td>
+                            <td>{{$trainer->name}}</td>
+                            <td>{{$trainer->job_title}}</td>
+                            <td>{{Str::limit($trainer->description , 80 , '')}}</td>
                             <td>
-                                <form action="{{route('events.destroy' , $event->id)}}" method="post">  
+                                <form action="{{route('trainers.destroy' , $trainer->id)}}" method="post">  
                                     @csrf
                                     @method('DELETE')
-                                    <a  href="{{route('events.edit' , $event->id)}}" class="btn btn-round btn-primary"><i
+                                    <a  href="{{route('trainers.edit' , $trainer->id)}}" class="btn btn-round btn-primary"><i
                                             class="nc-icon nc-settings"></i></a>
     
                                     <button   type="submit" class="btn btn-round btn-danger"><i
@@ -45,7 +47,7 @@
 
                     </tbody>
                 </table>
-                {{$events->links()}}
+                {{$trainers->links()}}
             </div>
         </div>
 

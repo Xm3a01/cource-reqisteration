@@ -93,6 +93,12 @@
                     <p>Gallery</p>
                 </a>
             </li>
+            <li class="{{ request()->is('*trainers*') ? 'active' : '' }}">
+                <a href="{{ route('trainers.index') }}">
+                    <i class="nc-icon nc-single-02"></i>
+                    <p>Trainers</p>
+                </a>
+            </li>
             @endif
         </ul>
     </div>

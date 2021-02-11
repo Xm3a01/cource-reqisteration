@@ -15,24 +15,27 @@ class GalleryController extends Controller
     {
         $galleries = Gallery::paginate(100);
 
-        return view('admins.dashboard.gallery.index',['galleries' => $galleries]);
+        return view('admins.dashboard.galleries.index',['galleries' => $galleries]);
     }
     public function create()
     {
-        return view('admins.dashboard.gallery.create');
+        return view('admins.dashboard.galleries.create');
     }
 
     public function store(Request $request)
     {
+        // return $request->date;
         $this->validate($request , [
             'title' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'date' => 'required|date'
         ]);
 
         $gallery = Gallery::create($request->except('image'));
 
         if($request->hasFile('image')) {
-            $this->storeImage($gallery , $request->image , 'galleries');
+            // $this->storeImage($gallery , $request->image , 'galleries');
+            $gallery->addMedia($request->image)->toMediaCollection('galleries');
         }
 
         \Session::flash('success' , 'Gallery add successfully');
@@ -41,7 +44,7 @@ class GalleryController extends Controller
 
     public function edit(Gallery $gallery)
     {
-        return view('admins.dashboard.gallery.edit', ['gallery' => $gallery]);
+        return view('admins.dashboard.galleries.edit', ['gallery' => $gallery]);
     }
 
     public function update(Request $request , Gallery $gallery)
@@ -54,8 +57,8 @@ class GalleryController extends Controller
         $gallery->update($request->except('image'));
 
         if($request->hasFile('image')) {
-            $this->deleteImage($gallery , 'galleries');
-            $this->storeImage($gallery , $request->image , 'galleries');
+            $gallery->clearMediaCollection('galleries');
+            $gallery->addMedia($request->image)->toMediaCollection('galleries');
         }
 
         \Session::flash('success' , 'Gallery update successfully');
@@ -65,8 +68,8 @@ class GalleryController extends Controller
 
     public function destroy(Gallery $gallery)
     {
-        if($request->hasFile('image')) {
-            $this->deleteImage($gallery , 'galleries');
+        if($gallery->image) {
+            $gallery->clearMediaCollection('galleries');
         }
 
         $gallery->delete();
