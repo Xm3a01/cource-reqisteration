@@ -2,9 +2,11 @@
 
 @section('content')
 
+@if (!Auth::guard('admin')->user()->is_supervisor)
     <td class="text-center">
         <a href="{{ route('courses.create') }}" class="btn btn-round btn-primary">Add Course</a>
     </td>
+@endif
     <div class="card">
         <div class="card-header">
             <h4 class="card-title"> All Courses</h4>
@@ -20,7 +22,11 @@
                             <th>feeses</th>
                             <th>seats</th>
                             <th>description</th>
+                            @if (!Auth::guard('admin')->user()->is_supervisor)
                             <th>actions</th>
+                            @else 
+                            <th>students</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +39,8 @@
                                 <td>{{ $course->feeses }}</td>
                                 <td>{{ $course->seats }}</td>
                                 <td>{{ Str::limit($course->description, 40) }}</td>
+
+                                @if (!Auth::guard('admin')->user()->is_supervisor)
                                 <td>
                                     <form action="{{ route('courses.destroy', $course->id) }}" method="POST">
                                         @csrf
@@ -45,6 +53,19 @@
                                     </form>
 
                                 </td>
+                                @else
+                                <td>
+                                    <a href="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Coureses ({{ $course->students->count() }})
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                        @foreach ($course->students as $student)
+                                          <a class="dropdown-item" href="#">{{$student->name}}</a>
+                                        @endforeach
+                                    </div>
+                                </td>
+                                @endif
                             </tr>
                         @endforeach
 

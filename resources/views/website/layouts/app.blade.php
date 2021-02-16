@@ -13,6 +13,8 @@
 
     @include('website.includes._styles')
 
+    @yield('styles')
+
 </head>
 
 <body>

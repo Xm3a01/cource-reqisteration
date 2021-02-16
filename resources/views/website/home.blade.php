@@ -52,12 +52,12 @@
                             <h3 class="mb-5">Best Course</h3>
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <img src="{{$course->image ?? ""}}" class="img-fluid" alt="">
-                                    <h3>{{$course->name ?? ""}}</h3>
+                                    <img src="{{$lastCourse->image ?? ""}}" class="img-fluid" alt="">
+                                    <h3>{{$lastCourse->name ?? ""}}</h3>
                                     <p>
-                                        {{$course->description ?? ""}}.
+                                        {{$lastCourse->description ?? ""}}.
                                     </p>
-                                    <a href="{{route('register.show' , $course->id ?? "")}}" class="get-started-btn rounded-sm ml-1 mt-2">Get Started</a>
+                                    <a href="{{route('register.show' , $lastCourse->id ?? "")}}" class="get-started-btn rounded-sm ml-1 mt-2">Get Started</a>
                                 </div>
 
 
@@ -65,22 +65,22 @@
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Trainer</h5>
-                                        <p><a href="#">Walter White</a></p>
+                                        <p><a href="#">{{$lastCourse->trainer->name ?? ""}}</a></p>
                                     </div>
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Course Fee</h5>
-                                        <p>${{$course->feeses ?? ""}}</p>
+                                        <p>${{$lastCourse->feeses ?? ""}}</p>
                                     </div>
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Available seats</h5>
-                                        <p>{{$course->seats ?? ""}}</p>
+                                        <p>{{$lastCourse->seats ?? ""}}</p>
                                     </div>
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Schedule</h5>
-                                        <p>{{$course->period ?? ""}}</p>
+                                        <p>{{$lastCourse->period ?? ""}}</p>
                                     </div>
 
                                 </div>

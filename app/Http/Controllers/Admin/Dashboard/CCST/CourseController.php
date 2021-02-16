@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Dashboard\CCST;
 
+use Auth;
 use App\Admin;
 use App\Course;
+use App\Trainer;
 use App\Traits\HasImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,8 +18,12 @@ class CourseController extends Controller
     
     public function index()
     {
-        
-        $courses = Course::latest()->paginate(100);
+        if(Auth::guard('admin')->user()->is_supervisor){
+            $courses = Auth::guard('admin')->user()->courses()->paginate(100);
+        } else {
+
+            $courses = Course::latest()->paginate(100);
+        }
         return view('admins.dashboard.courses.index' , ['courses' => $courses , 'title' => 'Courses']);
     }
 
@@ -25,7 +31,8 @@ class CourseController extends Controller
     public function create()
     {
         $managers = Admin::where('is_supervisor' , 1)->get();
-        return view('admins.dashboard.courses.create',['managers' => $managers , 'title' => 'Course Create']);
+        $trainers = Trainer::all();
+        return view('admins.dashboard.courses.create',['managers' => $managers , 'title' => 'Course Create' , 'trainers' => $trainers]);
     }
 
    
@@ -80,7 +87,7 @@ class CourseController extends Controller
    
     public function destroy(Course $course)
     {
-        $course->clearMediaCollection($request->image);
+        $course->clearMediaCollection($course->image);
         $course->delete();
 
         \Session::flash('success' , 'Course Successfully deleted');

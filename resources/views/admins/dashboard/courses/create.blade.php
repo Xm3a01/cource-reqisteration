@@ -6,8 +6,8 @@
                 <h5 class="card-title">Add Course</h5>
             </div>
             <div class="card-body">
-                <form action="{{route('courses.store')}}" method="POST" enctype="multipart/form-data">
-                  @csrf
+                <form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
@@ -57,15 +57,27 @@
                                     <option value="">Select Time</option>
                                     <option value="Morning">Morning</option>
                                     <option value="Evenning">Evenning</option>
-                                  </select>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="image"> Course image <a href="">attcah image</a> </label>
                                 <input type="file" class="form-control-file" placeholder="" name="image" id="image">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Trainer</label>
+                                <select name="trainer_id" class="form-control  select">
+                                    <option value="">Select Trainer</option>
+                                    @foreach ($trainers as $trainer)
+                                        <option value="{{$trainer->id}}">{{$trainer->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

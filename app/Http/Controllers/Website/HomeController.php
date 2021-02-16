@@ -19,12 +19,12 @@ class HomeController extends Controller
         $courses = Course::latest()->take(3)->get();
         $events = Ads::latest()->take(5)->get();
         // dd($courses);
-        $course = Course::latest()->first();
+        $lastCourse = Course::all()->last();
 
         return view('website.home',[
             'courses' => $courses,
             'events' => $events,
-            'course' => $course
+            'lastCourse' => $lastCourse
         ]);
     }
 }

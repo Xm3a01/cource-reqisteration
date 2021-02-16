@@ -112,15 +112,14 @@
                     <hr>
                     <h4>Courses ( <small>Select course to relate this student</small> )</h4>
 
-                    <label>Course selected</label>
-
+                    <h5>{{$student->courses ? 'Student Course' : ''}}</h5>
                     <div class="row">
                         @foreach ($student->courses as $course)
                             
                         <div class="col-md-4 pr-1">
                             <div class="form-group row">
                                 <input type="checkbox" checked class="form-control col-md-1"  name="courses[]" value = "{{$course->id}}">
-                                <label for="courses" class="col-md-2">{{$course->name}}</label>
+                                <label for="courses" class="col-md-9">{{$course->name}}</label>
                             </div>
                         </div>
                         @endforeach
@@ -128,13 +127,14 @@
 
                     <br>
 
+                    <label>Course selected</label><br>
                     <div class="row">
                         @foreach ($courses as $course)
                             
-                        <div class="col-md-4 pr-1">
+                        <div class="col-md-4 pr-1 pl-3">
                             <div class="form-group row">
                                 <input type="checkbox" class="form-control col-md-1"  name="courses[]" value = "{{$course->id}}">
-                                <label for="courses" class="col-md-2">{{$course->name}}</label>
+                                <label for="courses" class="col-md-9">{{$course->name}}</label>
                             </div>
                         </div>
                         @endforeach

@@ -53,7 +53,9 @@
                                         Coureses ({{ $student->courses->count() }})
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#"></a>
+                                        @foreach ($student->courses as $course)
+                                          <a class="dropdown-item" href="#">{{$course->name}}</a>
+                                        @endforeach
                                     </div>
                                 </td>
                                 <td>
