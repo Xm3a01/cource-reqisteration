@@ -49,6 +49,6 @@ Route::get('/events', 'Website\EventController@index')->name('web.events');
 Route::get('/galleries', 'Website\GalleryController@index')->name('web.galleries');
 Route::get('/contact', 'Website\ContactController@index')->name('contact.index');
 Route::post('/register', 'Website\CourseController@registeration')->name('register.store');
-Route::get('/register/{id}', 'Website\CourseController@showRegister')->name('register.show');
+Route::get('/register/{course}', 'Website\CourseController@showRegister')->name('register.show');
 Route::get('/course/{course}/show', 'Website\CourseController@show')->name('course.show');
 Route::get('/payment', 'Website\CourseController@showRegister')->name('payment.show');

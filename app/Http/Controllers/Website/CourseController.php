@@ -27,12 +27,14 @@ class CourseController extends Controller
         $request['whatsapp'] = $request->phone;
         $user = User::create($request->all());
 
+        $user->courses()->sync($request->course_id);
         \Session::flash('success' , 'Student Successfully Create');
         return back();
     }
-    public function showRegister()
+    public function showRegister(Course $course)
     {
-        return view('website.registration');
+        // return $course;
+        return view('website.registration' , ['course' => $course]);
     }
 
     public function show(Course $course)

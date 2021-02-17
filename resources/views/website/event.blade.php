@@ -15,8 +15,8 @@
             @foreach ($events as $event)
             <div class="col-md-6 d-flex align-items-stretch">
               <div class="card">
-                <div class="card-img" style="    width: 540.04px; height: 359.89px;">
-                  <img src="{{$event->image}}" alt="...">
+                <div class="card-img" >
+                  <img src="{{$event->image}}" alt="..." style="width: 540.04px; height: 359.89px;">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title"><a href="">{{$event->name}}</a></h5>

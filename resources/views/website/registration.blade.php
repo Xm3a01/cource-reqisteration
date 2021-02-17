@@ -116,6 +116,7 @@
 
                 <form action="{{route('register.store')}}" method="post">
                   @csrf
+                  <input type="hidden" name="course_id" value="{{$course->id}}">
                     <h1>Register:</h1>
                     <div class="tab"> Personal INFO
                         <p><label>User Name</label><input type="text" placeholder="First name..."
