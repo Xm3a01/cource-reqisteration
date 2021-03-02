@@ -1,0 +1,10 @@
+.custom-table {
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 10%;
+}
