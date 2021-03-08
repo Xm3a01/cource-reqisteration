@@ -53,8 +53,9 @@ class AdminController extends Controller
         $admin = Admin::create($data);
 
         if ($request->has('avatar')) {
-            // $admin->clearMediaCollection('avatars');
-            $admin->addMedia($request->avatar)->preservingOriginal()->toMediaCollection('avatars');
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+            $admin->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('avatars');
         }
 
         \Session::flash('success' , 'تم حفظ المشرف بنجاح');
@@ -100,9 +101,11 @@ class AdminController extends Controller
         }
 
 
-        if ($request->hasFile('avatar')) {
+        if ($request->has('avatar')) {
             $admin->clearMediaCollection('avatars');
-            $admin->addMedia($request->avatar)->preservingOriginal()->toMediaCollection('avatars');
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+            $admin->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('avatars');
         }
 
         \Session::flash('success' , 'تم تعديل المشرف بنجاح');

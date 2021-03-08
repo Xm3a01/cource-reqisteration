@@ -17,8 +17,10 @@ class CreateLinksTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('link');
+            $table->unsignedBigInteger('linkable_id');
+            $table->string('linkable_type');
             $table->enum('icon', ['icofont-twitter', 'icofont-facebook' , 'icofont-instagram' , 'icofont-linkedin' , 'icofont-skype'])->nullable();
-            $table->foreignId('trainer_id')->nullable()->constrained();
+            $table->enum('s_icon', ['bxl-twitter','bxl-facebook','bxl-instagram','bxl-linkedin','bxl-skype'])->nullable();
             
             $table->timestamps();
         });

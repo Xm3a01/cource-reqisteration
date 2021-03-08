@@ -36,10 +36,10 @@ class EventController extends Controller
         ]);
         $event = Ads::create($request->except('image'));
 
-        if ($request->hasFile('image')) {
-            //  $this->storeImage($event , $request->image , 'events');
-
-            $event->addMedia($request->image)->toMediaCollection('events');
+        if ($request->has('image')) {
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+            $event->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('events');
         }
         \Session::flash('success' , 'Ads save successfully');
         return redirect()->route('events.index');
@@ -64,9 +64,12 @@ class EventController extends Controller
 
         $event->update($request->except('image'));
 
-        if ($request->hasFile('image')) {
-            $this->deleteImage($event , 'events');
-            $this->storeImage($event , $request->image , 'event');
+        if ($request->has('image')) {
+            $event->clearMediaCollection('events');
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+        //    dd($request->image);
+            $event->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('events');
         }
 
         \Session::flash('success' , 'Ads update successfully');

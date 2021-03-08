@@ -43,9 +43,13 @@ class TrainerController extends Controller
         ]);
         $trainer = Trainer::create($request->except(['image' , 'link']));
 
-        if ($request->hasFile('image')) {
-            $trainer->addMedia($request->image)->toMediaCollection('trainers');
+        if ($request->has('image')) {
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+        //    dd($request->image);
+            $trainer->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('trainers');
         }
+        
 
         if($request->link){
             foreach($request->link as $index => $link) {
@@ -55,11 +59,10 @@ class TrainerController extends Controller
 
                     // dd($request->link);
             
-                    Link::create([
+                    $trainer->links()->create([
                         'name' =>'media_'.$index,
                         'link' => $link,
                         'icon' => $index,
-                        'trainer_id' => $trainer->id
                     ]);
                 }
             }
@@ -89,9 +92,12 @@ class TrainerController extends Controller
 
         $trainer->update($request->except('image'));
 
-        if ($request->hasFile('image')) {
+        if ($request->has('image')) {
             $trainer->clearMediaCollection('trainers');
-            $trainer->addMedia($request->image)->toMediaCollection('trainers');
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+        //    dd($request->image);
+            $trainer->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('trainers');
         }
 
         if($request->link){
@@ -102,11 +108,10 @@ class TrainerController extends Controller
 
                     // dd($request->link);
             
-                    Link::create([
+                    $trainer->links()->create([
                         'name' =>'media_'.$index,
                         'link' => $link,
                         'icon' => $index,
-                        'trainer_id' => $trainer->id
                     ]);
                 }
             }
@@ -121,7 +126,6 @@ class TrainerController extends Controller
     public function destroy(Trainer $trainer)
     {
         if ($event->image) {
-            // $this->deleteImage($event , 'events');
             $trainer->clearMediaCollection('trainers');
         }
 

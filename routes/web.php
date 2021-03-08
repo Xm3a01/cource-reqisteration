@@ -27,6 +27,7 @@ Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , functio
   Route::resource('events','Admin\Dashboard\CCST\EventController');
   Route::resource('trainers','Admin\Dashboard\CCST\TrainerController');
   Route::resource('galleries','Admin\Dashboard\CCST\GalleryController');
+  Route::resource('settings', 'Admin\Dashboard\CCST\SettingController')->except(['show' , 'destory']);
   Route::get('/' , 'Admin\IndexController@index')->name('admins.dashboard');
   
   Route::group(['prefix' => '/' ,  'middleware' => 'superadmin'] , function(){
@@ -52,3 +53,7 @@ Route::post('/register', 'Website\CourseController@registeration')->name('regist
 Route::get('/register/{course}', 'Website\CourseController@showRegister')->name('register.show');
 Route::get('/course/{course}/show', 'Website\CourseController@show')->name('course.show');
 Route::get('/payment', 'Website\CourseController@showRegister')->name('payment.show');
+
+Route::get('test' , function(){
+  return view('website.reg');
+});

@@ -6,6 +6,7 @@ use App\User;
 use App\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentRegRequest;
 
 class CourseController extends Controller
 {
@@ -20,11 +21,10 @@ class CourseController extends Controller
         return view('website.courses' , ['courses' => $courses]);
     }
 
-    public function registeration(Request $request)
+    public function registeration(StudentRegRequest $request)
     {
-        //student Store whenWasthat
+        // student Store whenWasthat
         $request['password'] = \Hash::make($request->password);
-        $request['whatsapp'] = $request->phone;
         //
         
         $user = User::create($request->all());
@@ -37,7 +37,7 @@ class CourseController extends Controller
     public function showRegister(Course $course)
     {
         // return $course;
-        return view('website.registration' , ['course' => $course]);
+        return view('website.reg' , ['course' => $course]);
     }
 
     public function show(Course $course)

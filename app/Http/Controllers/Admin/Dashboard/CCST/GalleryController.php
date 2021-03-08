@@ -33,9 +33,10 @@ class GalleryController extends Controller
 
         $gallery = Gallery::create($request->except('image'));
 
-        if($request->hasFile('image')) {
-            // $this->storeImage($gallery , $request->image , 'galleries');
-            $gallery->addMedia($request->image)->toMediaCollection('galleries');
+        if ($request->has('image')) {
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+            $gallery->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('galleries');
         }
 
         \Session::flash('success' , 'Gallery add successfully');
@@ -56,9 +57,11 @@ class GalleryController extends Controller
 
         $gallery->update($request->except('image'));
 
-        if($request->hasFile('image')) {
+        if ($request->has('image')) {
             $gallery->clearMediaCollection('galleries');
-            $gallery->addMedia($request->image)->toMediaCollection('galleries');
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+            $gallery->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('galleries');
         }
 
         \Session::flash('success' , 'Gallery update successfully');

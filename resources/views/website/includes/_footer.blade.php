@@ -2,17 +2,15 @@
 
     <div class="mr-md-auto text-center text-md-left">
         <div class="copyright">
-            &copy; Copyright <strong><span>Hash Developed Projects</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            Designed by <a href="https://www.hashdevelopedprojects.com">Hash Team Made</a>
+            &copy; Copyright <strong><span> <a href="http://www.hashdevelopedprojects.com"> Hash Developed Projects</a></span></strong>. All Rights Reserved
         </div>
     </div>
     <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        @if (!is_null($setting))
+            
+        @foreach ($setting->links as $link)
+          <a href="{{$link->link}}" class="twitter"><i class="bx {{$link->s_icon}}"></i></a>
+        @endforeach
+        @endif
     </div>
 </div>

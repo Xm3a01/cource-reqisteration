@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Setting;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 // use Illuminate\Http\Resources\Json\Resources;
 
@@ -25,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Resources::withoutWrapping();
+
+        View::share('setting', Setting::latest()->with('links')->first());
     }
 }

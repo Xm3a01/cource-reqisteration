@@ -53,8 +53,10 @@ class CourseController extends Controller
         $course = Course::create($request->except('image'));
 
         if ($request->has('image')) {
-            // $this->storeImage($course , $request->image , 'courses');
-            $course->addMedia($request->image)->toMediaCollection('courses');
+            $ex = $request->image->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+        //    dd($request->image);
+            $course->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('courses');
         }
 
         \Session::flash('success' , 'Course Successfully created');
@@ -75,8 +77,11 @@ class CourseController extends Controller
         $course->update($request->except('image'));
 
         if ($request->has('image')) {
-            $this->deleteImage($course , $course->image , 'courses');
-            $this->storeImage($course , $request->image , 'courses');
+            $course->clearMediaCollection();
+            $ex = $request->image->getClientOriginalExtension('courses');
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+        //    dd($request->image);
+            $course->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('courses');
         }
 
         \Session::flash('success' , 'Course Successfully updated');
@@ -87,7 +92,7 @@ class CourseController extends Controller
    
     public function destroy(Course $course)
     {
-        $course->clearMediaCollection($course->image);
+        $course->clearMediaCollection('courses');
         $course->delete();
 
         \Session::flash('success' , 'Course Successfully deleted');

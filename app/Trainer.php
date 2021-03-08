@@ -17,10 +17,10 @@ class Trainer extends Model implements HasMedia
     protected $fillable = ['name' , 'job_title' , 'description'];
 
 
-    public function links()
-    {
-        return $this->hasMany(Link::class);
+    public  function links() {
+        return $this->morphMany(Link::class , 'linkable');
     }
+    
     public function courses()
     {
         $this->hasMany(Course::class);

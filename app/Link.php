@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
-    protected $fillable = ['name' , 'link' , 'trainer_id' , 'icon'];
+    protected $fillable = ['name' , 'link' , 'trainer_id' , 'icon' , 's_icon'];
 
 
-    public function trainer()
+    public function linkable()
     {
-        return $this->belongsTo(Trainer::class);
+        return $this->morphTo();
     }
 }

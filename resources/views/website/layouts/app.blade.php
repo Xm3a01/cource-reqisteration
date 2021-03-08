@@ -20,8 +20,12 @@
 <body>
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
-            <h1 class="logo mr-auto"><img src="{{asset('assets/images/ab.jpg')}}"></a></h1>
-            <h1 class="logo mr-auto"><a href="index.html">CCST</a></h1>
+            <h3 class="logo mr-auto">
+                <a href="/">
+                <img src="{{asset('assets/images/ab.jpg')}}">
+                CCST
+            </a>
+            </h3>
 
             @include('website.includes._navbar')
         </div>
