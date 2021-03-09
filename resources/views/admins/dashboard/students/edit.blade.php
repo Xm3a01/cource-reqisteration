@@ -89,8 +89,8 @@
                             <div class="form-group">
                                 <label>Course Time</label>
                                 <select class="form-control" placeholder="Course Time" name="coures_time" >
-                                    <option value="8 - 10 AM">8 - 10 AM</option>
-                                    <option {{$student->coures_time == '6 - 8 PM' ? 'selected' : ''}} value="6 - 8 PM">6 - 8 PM</option>
+                                    <option value="Morring">Morring</option>
+                                    <option {{$student->coures_time == 'Evening' ? 'selected' : ''}} value="Evening">Evening</option>
                                 </select>
                             </div>
                         </div>

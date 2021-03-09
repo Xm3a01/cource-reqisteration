@@ -9,6 +9,7 @@ use App\Trainer;
 use App\Traits\HasImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseRequest;
 
 class CourseController extends Controller
 {
@@ -36,19 +37,8 @@ class CourseController extends Controller
     }
 
    
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
-
-        $this->validate($request , [
-            'name' => 'required',
-            'h_week' => 'required|regex:/^[0-9]+$/',
-            'feeses' => 'required|',
-            'period' => 'required',
-            'description' => 'required'
-        ] , [
-            'feeses.regex' => 'The field Feeses must float and postive number',
-            'h_week.regex' => 'The field H Week must be  postive number'
-            ]);
 
         $course = Course::create($request->except('image'));
 

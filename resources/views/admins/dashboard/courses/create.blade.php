@@ -9,16 +9,25 @@
                 <form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6 pr-1">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Course Name</label>
                                 <input type="text" class="form-control" placeholder="Name" name="name">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 pr-1">
+                            <div class="form-group">
+                                <label>Monthes</label>
+                                <input type="text" class="form-control" placeholder="eg: 1 month" name="monthes">
+                            </div>
+                        </div>
+
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
                                 <label>H/week</label>
-                                <input type="number" class="form-control" placeholder="H/w" name="h_week">
+                                <input type="text" class="form-control" placeholder="eg: 2 hours, 3times at week" name="h_week">
                             </div>
                         </div>
                     </div>
@@ -32,7 +41,7 @@
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
                                 <label>seats/group</label>
-                                <input type="number" class="form-control" placeholder="seats/group" name="seats">
+                                <input type="text" class="form-control" placeholder="seats/group" name="seats">
 
                             </div>
                         </div>

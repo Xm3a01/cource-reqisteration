@@ -64,6 +64,14 @@
                                 <div class="col-lg-4">
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
+                                        <h5>Monthes</h5>
+                                        <p>{{$lastCourse->monthes ?? ""}}</p>
+                                    </div>
+                                    <div class="course-info d-flex justify-content-between align-items-center">
+                                        <h5>H/W</h5>
+                                        <p>{{$lastCourse->h_week ?? ""}}</p>
+                                    </div>
+                                    <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Trainer</h5>
                                         <p><a href="#">{{$lastCourse->trainer->name ?? ""}}</a></p>
                                     </div>

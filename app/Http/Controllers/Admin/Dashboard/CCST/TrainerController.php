@@ -125,11 +125,11 @@ class TrainerController extends Controller
     
     public function destroy(Trainer $trainer)
     {
-        if ($event->image) {
+        if ($trainer->image) {
             $trainer->clearMediaCollection('trainers');
         }
 
-        $event->delete();
+        $trainer->delete();
 
         \Session::flash('success' , 'Ads delete successfully');
         return redirect()->route('trainers.index');

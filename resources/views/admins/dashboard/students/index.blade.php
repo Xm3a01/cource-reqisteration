@@ -62,12 +62,13 @@
                                     <form action="{{ route('students.destroy', $student->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                    </form>
+                                   
                                     <a href="{{ route('students.edit', $student->id) }}"
                                         class="btn btn-round btn-primary"><i class="nc-icon nc-settings"></i></a>
 
                                     <button type="submit" class="btn btn-round btn-danger"><i
                                             class="nc-icon nc-simple-remove"></i></button>
+                                        </form>
 
                                 </td>
                             </tr>

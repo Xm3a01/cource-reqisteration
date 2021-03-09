@@ -19,6 +19,7 @@
                             <th>image</th>
                             <th>Course Name</th>
                             <th>H/week</th>
+                            <th>Monthes</th>
                             <th>feeses</th>
                             <th>seats</th>
                             <th>description</th>
@@ -36,6 +37,7 @@
                                 <td> <img src="{{ $course->image ? $course->image  : asset('assets/images/noImage.png') }}" alt="Image" height="45" width="45"></td>
                                 <td>{{ $course->name }}</td>
                                 <td>{{ $course->h_week }}</td>
+                                <td>{{ $course->monthes }}</td>
                                 <td>{{ $course->feeses }}</td>
                                 <td>{{ $course->seats }}</td>
                                 <td>{{ Str::limit($course->description, 40) }}</td>

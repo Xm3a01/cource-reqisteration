@@ -24,7 +24,7 @@ class CreateStudentsTable extends Migration
             $table->date('whenWasthat'); 
             $table->string('whatsapp'); 
             $table->string('email'); 
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

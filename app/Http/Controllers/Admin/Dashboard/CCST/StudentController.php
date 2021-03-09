@@ -58,9 +58,11 @@ class StudentController extends Controller
     }
 
   
-    public function destroy($id)
+    public function destroy(User $student)
     {
-        //
+       $student->delete();
+       \Session::flash('success' , 'Student Successfully deleted');
+       return redirect()->route('students.index');
     }
 
     public function assignCourse(Request $request)

@@ -14,7 +14,7 @@ class Course extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['name' , 'h_week' , 'feeses' , 'description' , 'admin_id' , 'seats' , 'trainer_id' , 'period'];
+    protected $fillable = ['name' , 'h_week' , 'monthes' , 'feeses' , 'description' , 'admin_id' , 'seats' , 'trainer_id' , 'period'];
 
     public function students()
     {
