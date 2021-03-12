@@ -27,6 +27,9 @@ class User extends Authenticatable implements HasMedia , JWTSubject
         'level','job_title',
         'coures_time','whenWasthat',
         'whatsapp','email',
+        'unHash_password',
+        'payed', 'payed_id'
+        
     ];
 
     /**
@@ -35,7 +38,7 @@ class User extends Authenticatable implements HasMedia , JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'unHash_password'
     ];
 
     /**

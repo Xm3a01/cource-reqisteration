@@ -19,9 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('unHash_password');
             $table->unsignedBigInteger('phone')->nullable();
             $table->string('address');
             $table->string('gender')->default(0); 
+            $table->boolean('payed')->default(0); 
             $table->string('birthday');
             $table->string('level');
             $table->string('job_title');
@@ -29,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->date('whenWasthat'); 
             $table->string('whatsapp'); 
             $table->string('email'); 
+            $table->string('payed_id')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });

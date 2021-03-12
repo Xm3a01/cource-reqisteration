@@ -26,6 +26,25 @@
 
                                     <div class="col-lg-8 mt-5 mt-lg-0">
 
+                                        <table class="table" style="border-top: none">
+                                            <thead >
+                                                <tr>
+                                                    <th>Course</th>
+                                                    <th>Amount</th>
+                                                    <th>Fees</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="color:#4b5092">
+                                                <tr>
+                                                    <td>{{$course->name}}</td>
+                                                    <td>{{$course->amount}} SDG</td>
+                                                    <td>{{$course->feeses}} SDG</td>
+                                                    <td>{{$course->feeses + $course->amount}} SDG</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
                                         <form action="{{ route('register.store') }}" method="post" role="form">
                                             @csrf
                                             <input type="hidden" name="course_id" value="{{ $course->id }}">
@@ -198,7 +217,7 @@
                                                     <select name="coures_time" class="form-control">
                                                         <option value="">Select Time</option>
                                                         <option value="Morning" {{ old('coures_time') == 'Morning' ? 'selected' : '' }}>Morning</option>
-                                                        <option value="Evenning" {{ old('coures_time') == 'Evenning' ? 'selected' : '' }}>Evenning</option>
+                                                        <option value="Evening" {{ old('coures_time') == 'Evening' ? 'selected' : '' }}>Evening</option>
                                                     </select>
                                                     @error('coures_time')
                                                         <p class="" style="color: red; font-size:12px">
@@ -208,61 +227,26 @@
                                                 </div>
                                             </div>
 
-                                            <hr>
+                                            
+                                            <div class="row">
+                                                <div>
 
-                                            {{-- <div class="form-group">
-                                                <strong>CONTACT INFO</strong>
+                                                <p style="font-size: 14px">
+                                                    
+                                                    Fees are updated on monthly bases according to the USD equivalent (5, 10 and 15 USD).
+                    
+                                                    These fees are valid from day 1 till the last day of the month.
+                    
+                                                    Payment is available for all banks except(faisal,khartoum,baraka,salam)bank.
+                                                </p>
+ 
+                                                    <input onchange="agreeTerm()" type="checkbox" size="40" name="agree" value="agree" id="ag" />
+                                                    <label for="agree" style = "color: blue"> I agree</label><br>
+
+                                                </div>
                                             </div>
-                                            <div class="form-row">
-
-                                                <div class="col-md-6 form-group">
-                                                    <input type="text" class="form-control" name="address" id="address"
-                                                        placeholder="Address" />
-                                                    @error('address')
-                                                        <p class="" style="color: red; font-size:12px">
-                                                            {{ $message }}
-                                                        </p>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-6 form-group">
-                                                    <input type="email" class="form-control" name="email" id="email"
-                                                        placeholder="Your Email" />
-                                                    @error('email')
-                                                        <p class="" style="color: red; font-size:12px">
-                                                            {{ $message }}
-                                                        </p>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-6 form-group">
-                                                    <input type="password" name='password' class="form-control"
-                                                        id="password" placeholder="Password" />
-                                                    @error('password')
-                                                        <p class="" style="color: red; font-size:12px">
-                                                            {{ $message }}
-                                                        </p>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-6 form-group">
-                                                    <input type="text" name='phone' class="form-control" id="phone"
-                                                        placeholder="Phone" />
-
-            
-                                                    @error('phone')
-                                                        <p class="" style="color: red; font-size:12px">
-                                                            {{ $message }}
-                                                        </p>
-                                                    @enderror
-                                                </div>
-                                            </div> --}}
-
-
-                                            {{-- <div class="mb-3">
-                                                <div class="loading">Loading</div>
-                                                <div class="error-message"></div>
-                                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                                            </div> --}}
                                             <div class="text-center">
-                                                <button class="btn btn-success" type="submit">Apply</button>
+                                                <button class="btn btn-success" type="submit" id="pay" disabled style="padding: 3px 50px 3px 50px">Pay</button>
                                             </div>
                                         </form>
 
@@ -281,3 +265,14 @@
     </section>
 
 @endsection
+
+<script>
+    function agreeTerm(){
+
+    checkbox = document.getElementById('ag');
+    if(checkbox.checked)
+        item = document.getElementById('pay').disabled = false;
+    else 
+        item = document.getElementById('pay').disabled = true;
+    }
+</script>

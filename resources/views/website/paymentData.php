@@ -8,4 +8,4 @@ $payeeId="0010050057";
 $applicationKey ="k3Jv5lc0p8";
 $applicationSalt ="peoG26LNyG";
 
-$currency="SDG";
+$currency="SDG"; 

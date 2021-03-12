@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('monthes');
             $table->string('period');
             $table->float('feeses'); 
+            $table->float('amount'); 
             $table->string('seats')->nullable(); 
             $table->text('description');
             $table->foreignId('admin_id')->nullable()->constrained()->cascadeOnDelete();

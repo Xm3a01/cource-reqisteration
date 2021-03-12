@@ -40,6 +40,16 @@
                         </div>
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
+                                <label>Amount</label>
+                                <input type="text" class="form-control" placeholder="Amount" name="amount">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <label>seats/group</label>
                                 <input type="text" class="form-control" placeholder="seats/group" name="seats">
 

@@ -14,7 +14,7 @@ class StudentController extends Controller
    
     public function index()
     {
-       $students = User::with('courses')->paginate(100);
+       $students = User::with('courses')->wherePayed(1)->paginate(100);
        return view('admins.dashboard.students.index' , ['students' => $students]);
     }
 

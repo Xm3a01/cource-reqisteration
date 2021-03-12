@@ -55,5 +55,5 @@ Route::get('/course/{course}/show', 'Website\CourseController@show')->name('cour
 Route::get('/payment', 'Website\CourseController@showRegister')->name('payment.show');
 
 Route::get('test' , function(){
-  return view('website.reg');
+  return view('website.payment');
 });
