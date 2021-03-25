@@ -23,23 +23,12 @@ class CourseController extends Controller
 
         $course = Course::findOrFail($request->course_id);
 
-        // $Payment = Payment::$SERVICE_ID.'|'.Payment::$APLICATION_ID.'|'.Payment::$PAYEE_ID.'|'.Payment::appIntegraty();
-        // $hash = \Hash::make($Payment);
-        // $hash2=hash('sha256',$Payment);
-        // return $Payment.'  This hash => '.$hash.'  This hash2 => '.$hash2. Carbon::now();
-        // unHash_password
-        // $request['unHash_password'] = $request->password;
-        // $request['password'] = \Hash::make($request->password);
-        // $user = User::create($request->all());
-        return Payment::payed($course);
-        // student Store whenWasthat
-        //
-        
-
-
+        $request['unHash_password'] = $request->password;
+        $request['password'] = \Hash::make($request->password);
+        $user = User::create($request->all());
         $user->courses()->sync($request->course_id);
-        \Session::flash('success' , 'Student Successfully Create');
-        return back();
+
+        return Payment::payed($course);
     }
     public function showRegister(Course $course)
     {

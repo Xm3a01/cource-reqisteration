@@ -77,6 +77,11 @@
                                     </div>
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
+                                        <h5>Course amount</h5>
+                                        <p>${{$course->amount ?? ""}}</p>
+                                      </div>
+
+                                    <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Course Fee</h5>
                                         <p>${{$lastCourse->feeses ?? ""}}</p>
                                     </div>

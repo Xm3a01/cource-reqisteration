@@ -23,4 +23,22 @@ class IndexController extends Controller
             'managers' => Admin::where('is_supervisor' , 1)->count(),
         ]);
     }
+
+    public function profile()
+    {
+        $admin =  \Auth::guard('admin')->user();
+        return view('admins.profile.edit',['admin' => $admin]);
+    }
+
+    public function editProfile(Request $request , Admin $admin)
+    {
+        if($request->has('password')) {
+            $request['password'] = \Hash::make($request->password);
+        }
+
+        $admin->update($request->all());
+
+        \Session::flash('success' , 'Profile update successfully');
+        return back();
+    }
 }

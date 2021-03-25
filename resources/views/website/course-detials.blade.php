@@ -24,28 +24,42 @@
            
   
             <div class="col-lg-4">
-  
+
               <div class="course-info d-flex justify-content-between align-items-center">
-                <h5>Trainer</h5>
-                <p><a href="#">{{$course->trainer->name ?? ''}}</a></p>
+                  <h5>Monthes</h5>
+                  <p>{{$course->monthes ?? ""}}</p>
               </div>
-  
               <div class="course-info d-flex justify-content-between align-items-center">
-                <h5>Course Fee</h5>
-                <p>${{$course->feeses}}</p>
+                  <h5>H/W</h5>
+                  <p>{{$course->h_week ?? ""}}</p>
               </div>
-  
               <div class="course-info d-flex justify-content-between align-items-center">
-                <h5>Available Seats</h5>
-                <p>{{$course->seats}}</p>
+                  <h5>Trainer</h5>
+                  <p><a href="#">{{$course->trainer->name ?? ""}}</a></p>
               </div>
-  
+              
               <div class="course-info d-flex justify-content-between align-items-center">
-                <h5>Schedule</h5>
-                <p>{{$course->period}}</p>
+                <h5>Course amount</h5>
+                <p>${{$course->amount ?? ""}}</p>
               </div>
-             
-            </div>
+              
+              <div class="course-info d-flex justify-content-between align-items-center">
+                  <h5>Course Fee</h5>
+                  <p>${{$course->feeses ?? ""}}</p>
+              </div>
+
+
+              <div class="course-info d-flex justify-content-between align-items-center">
+                  <h5>Available seats</h5>
+                  <p>{{$course->seats ?? ""}}</p>
+              </div>
+
+              <div class="course-info d-flex justify-content-between align-items-center">
+                  <h5>Schedule</h5>
+                  <p>{{$course->period ?? ""}}</p>
+              </div>
+
+          </div>
           </div>
   
         </div>

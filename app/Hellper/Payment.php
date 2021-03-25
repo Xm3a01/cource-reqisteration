@@ -4,6 +4,7 @@
 namespace App\Hellper;
 
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Exception\ConnectException;
 
 
 class Payment {
@@ -20,11 +21,11 @@ class Payment {
     {
        $integraty = self::APLICATION_KEY.'|'.
                     self::APLICATION_ID.'|'.
-                    self::APLICATION_SALT.'|';
-                    self::CURRENCY.'|';
-                    $amount.'|';
-                    $customerRef.'|';
-                    self::SERVICE_ID;
+                    self::SERVICE_ID.'|'.
+                    $amount.'|'.
+                    self::CURRENCY.'|'.
+                    $customerRef.'|'.
+                    self::APLICATION_SALT;
 
         return hash('sha256',$integraty);
     }
@@ -32,20 +33,20 @@ class Payment {
 
     public static function data($amount , $customerRef)
     {
-        $paymentRequest = array(
+        $paymentRequest = [
             "applicationId"=> self::APLICATION_ID ,
-            "payeeId"=> self::SERVICE_ID ,
-            "serviceId"=> self::PAYEE_ID,
+            "serviceId"=> self::SERVICE_ID ,
+            "payeeId"=> self::PAYEE_ID,
             "customerRef"=> $customerRef,
             "currency"=> self::CURRENCY,
             "amount"=> $amount,
-            "paymentInfo"=>array(
+            "paymentInfo"=>[
                 "accountNo"=>"123456",
                 "customerName"=>"Mohammed Ahmed",
                 "serviceType"=>"123"
-            ),
+            ],
             "hash"=> self::appIntegraty($amount , $customerRef),
-        );
+        ];
 
         return $paymentRequest;
     }
@@ -53,41 +54,39 @@ class Payment {
 
     public static function payed($course)
     {
-        $amount = $course->amount + $course->fees;
+        $amount = $course->amount + $course->feeses ;
         $customerRef = uniqid();
         \Session::put('customerRef', $customerRef);
 
+        try {
        $response =  Http::withHeaders([
                 "Content-Type: application/json",
                 "Cookie: SCOUTER=z2qu6oqpugr3h4"
         ])
         ->post("https://syberpay.sybertechnology.com/syberpay/getUrl", self::data($amount , $customerRef));
 
-            // $res = Http::get('http://hashzo.com/api/free/products');
-            // return $res;
-            // $curl = curl_init();
-            // curl_setopt_array($curl, array(
-            // CURLOPT_URL => "https://syberpay.sybertechnology.com/syberpay/getUrl",
-            // CURLOPT_RETURNTRANSFER => true,
-            // CURLOPT_ENCODING => "",
-            // CURLOPT_MAXREDIRS => 10,
-            // CURLOPT_TIMEOUT => 0,
-            // CURLOPT_FOLLOWLOCATION => true,
-            // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            // CURLOPT_CUSTOMREQUEST => "POST",
-            // CURLOPT_POSTFIELDS => self::data($amount , $customerRef),
-            // CURLOPT_HTTPHEADER => array(
-            //     "Content-Type: application/json",
-            //     "Cookie: SCOUTER=z2qu6oqpugr3h4"
-            // ),
-            // ));
-            // $response = curl_exec($curl);
+       }
+       catch (ConnectException $e) {
+        return $e;
+       }
+        return redirect(json_decode($response)->paymentUrl);
+    }
 
-            // curl_close($curl);
+    public static function listner($request)
+    {
 
-        $re =  json_decode($response);
-        return $re->responseMessage.'<br>'.$re->status;
-        // return \Session::get('customerRef');
+    }
+
+    public static function listnerIntegraty($postRequest)
+    {
+        $integraty = self::APLICATION_KEY.'|'.
+                     $postRequest['transactionId'].'|'.
+                     $postRequest['token'].'|'.
+                     self::APLICATION_SALT;
+
+        echo $integraty ."<br/>??". \Session::get('customerRef');
+
+        // return $integraty;
     }
 
 }

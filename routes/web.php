@@ -36,6 +36,9 @@ Route::group(['prefix' => '/dashboard' , 'middleware' => 'auth:admin'] , functio
     Route::resource('/trainers', 'Admin\Dashboard\CCST\TrainerController');
     Route::get('super-admin/{admin}', 'Admin\Dashboard\AdminController@superAdmin')->name('super.admin');
   });
+
+  Route::get('profile','Admin\IndexController@profile')->name('profile');
+  Route::put('profile/{admin}','Admin\IndexController@editProfile')->name('profile.update');
 });
 
 
