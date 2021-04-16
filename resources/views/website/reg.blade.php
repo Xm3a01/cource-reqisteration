@@ -3,7 +3,7 @@
 @section('content')
     <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
-            <h2>Course Registeration</h2>
+            <h2>Course Registration</h2>
             <p></p>
         </div>
     </div>

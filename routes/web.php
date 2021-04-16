@@ -1,5 +1,8 @@
 <?php
 
+use App\Course;
+// use Illuminate\Validation\Validator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,11 +55,53 @@ Route::get('/courses', 'Website\CourseController@index')->name('web.courses');
 Route::get('/events', 'Website\EventController@index')->name('web.events');
 Route::get('/galleries', 'Website\GalleryController@index')->name('web.galleries');
 Route::get('/contact', 'Website\ContactController@index')->name('contact.index');
-Route::post('/register', 'Website\CourseController@registeration')->name('register.store');
+Route::post('/contact/send', 'Website\ContactController@store')->name('contact.send');
+Route::post('/register/store', 'Website\CourseController@registeration')->name('register.store');
 Route::get('/register/{course}', 'Website\CourseController@showRegister')->name('register.show');
 Route::get('/course/{course}/show', 'Website\CourseController@show')->name('course.show');
 Route::get('/payment', 'Website\CourseController@showRegister')->name('payment.show');
 
 Route::get('test' , function(){
-  return view('website.payment');
+  $course = Course::first();
+  return view('website.registration' , ['course' => $course]);
 });
+
+// Route::post('get-valid' , function(Request $r){
+
+//   // return $r;
+//   $validator =  Validator::make($r->all(),[
+//       'name' => 'required|min:10',
+//       'username' => 'required',
+//       'password' => 'required|confirmed|min:8',
+//       'phone' => 'required|numeric|regex:/(0)[0-9]{9}/',
+//       'address' => 'required',
+//       'gender' => 'required',
+//       'birthday' => 'required|before:today',
+//       'level' => 'required',
+//       'job_title' => 'required',
+//       'coures_time' => 'required',
+//       'whenWasthat' => 'required',
+//       'whatsapp' => 'regex:/^0[0-9]{9}$/',
+//       'email' => 'required|email',
+//   ],
+//     [
+//       'phone.regex' => 'The :attribute must start with 0 and must be 10 number',
+//       'whatsapp.regex' => 'The :attribute number must start with 0 and must be 10 number'
+//   ]);
+
+//     if($validator->fails()){
+//         // return response()->json([
+//         //     "error" => 'validation_error',
+//         //     "message" => $validator->errors(),
+//         // ], 422);
+
+//         return response()->json([
+//               "code" => 422,
+//               "message" => $validator->errors(),
+//           ]);
+//     }
+
+//     // return redirect()->route('index');
+// });
+
+// get-valid

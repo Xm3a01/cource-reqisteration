@@ -42,28 +42,14 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->email;
-        // $contactName = Input::get('name');
-        // $contactEmail = Input::get('email');
-        // $contactMessage = Input::get('message');
-        // $data = array('name'=>$contactName, 'email'=>$contactEmail, 'message'=>$contactMessage);
         try{
              \Mail::send(new Contact($request));
-             return response()->json(['success' => 'شكرا على تواصلك']);
+               return 'OK';
            } catch(\Exception $e) {
-            // return response()->json(['error' => 'حدث خطاء اثناء العمليه']);
-            return $e;
+               return  'There is some error please load page Thanks !';
+            // return $e;
          }
-    //      try{
-    //      \Mail::send('mail', $data, function ($message) use ($contactEmail, $contactName) {
-    //         $message->from($contactEmail, $contactName);
-    //         $message->to('hashco28@gmail.com')->subject($data['subject']);
-    //         return response()->json(['success' => 'شكرا على تواصلك']);
-    //     });
-    //   } catch(\Exception $e) {
-    //     // return response()->json(['error' => 'حدث خطاء اثناء العمليه']);
-    //     return $e;
-    //  } 
+    //     
     }
 
     /**

@@ -31,7 +31,7 @@
                                                     <a href="{{route('register.show' , $course->id)}}" class="get-started-btn rounded-sm">Get Started</a>
 
                                                 </div>
-                                                <p class="price">${{$course->feeses}}</p>
+                                                <p class="price">{{$course->feeses}}SDG</p>
                                             </div>
                                             <p style="font-size: 0.72rem; color:#ccc">{{$course->name}}</p>
                                             <p>{{ Str::limit($course->description , 60 )}}</p>

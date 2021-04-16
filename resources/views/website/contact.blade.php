@@ -4,7 +4,7 @@
     <div class="breadcrumbs" data-aos="fade-in">
         <div class="container">
             <h2>Contact Us</h2>
-            <p>contact us by sending email and we will soon comeback to you. </p>
+            {{-- <p>contact us by sending email and we will soon comeback to you. </p> --}}
         </div>
     </div>
 
@@ -48,7 +48,8 @@
 
                                     <div class="col-lg-8 mt-5 mt-lg-0">
 
-                                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                                        <form action="{{route('contact.send')}}" method="post" role="form" class="php-email-form">
+                                            @csrf
                                             <div class="form-row">
                                                 <div class="col-md-6 form-group">
                                                     <input type="text" name="name" class="form-control" id="name"
@@ -78,7 +79,7 @@
                                             <div class="mb-3">
                                                 <div class="loading">Loading</div>
                                                 <div class="error-message"></div>
-                                                <div class="sent-message">Your message has been sent. Thank you!</div>
+                                                <div class="sent-message">Your message has been sent. Thank you! <a href="" style="margin-left: auto">x</a></div>
                                             </div>
                                             <div class="text-center"><button class=" rounded-sm" type="submit">Send Message</button></div>
                                         </form>

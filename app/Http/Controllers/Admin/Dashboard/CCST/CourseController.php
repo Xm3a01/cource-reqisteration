@@ -67,7 +67,7 @@ class CourseController extends Controller
         $course->update($request->except('image'));
 
         if ($request->has('image')) {
-            $course->clearMediaCollection();
+            $course->clearMediaCollection('courses');
             $ex = $request->image->getClientOriginalExtension('courses');
             $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
         //    dd($request->image);

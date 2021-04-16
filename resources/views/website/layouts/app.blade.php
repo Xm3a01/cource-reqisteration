@@ -20,12 +20,12 @@
 <body>
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
-            <h3 class="logo mr-auto">
+            <span class="logo mr-auto">
                 <a href="/">
                 <img src="{{asset('assets/images/ab.jpg')}}">
-                CCST
+                Comboni Short Courses
             </a>
-            </h3>
+            </span>
 
             @include('website.includes._navbar')
         </div>
@@ -34,7 +34,9 @@
 
 
     <main id="main" style="background: rgba(204, 204, 204, 0.651)">
-        @yield('content')
+        
+            @yield('content')
+        
     </main>
 
     <footer id="footer">

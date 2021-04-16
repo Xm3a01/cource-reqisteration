@@ -1,10 +1,10 @@
 @component('mail::message')
-# New message
+# {{$contact['name']}}
 
 {{$contact['message']}}
 
 @component('mail::panel')
-{{$contact['email']}}
+This Email From : {{$contact['email']}}
 @endcomponent
 Thanks,<br>
 {{ config('app.name') }}

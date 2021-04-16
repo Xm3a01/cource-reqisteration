@@ -69,7 +69,7 @@ class Payment {
        catch (ConnectException $e) {
         return $e;
        }
-        return redirect(json_decode($response)->paymentUrl);
+        return json_decode($response)->paymentUrl;
     }
 
     public static function listner($request)

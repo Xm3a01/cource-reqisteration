@@ -15,18 +15,18 @@
                             @foreach ($courses as $index => $course)     
                                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                     <div class="course-item">
-                                        <img src="{{$course->image}}" class="img-fluid" alt="..." style="width: 311.77px; height: 189.86px !important;">
+                                        <img src="{{ $course->image ? $course->image  : asset('assets/images/noImage.png') }} class="img-fluid" alt="..." style="width: 311.77px; height: 189.86px !important;">
                                         <div class="course-content">
                                             <div class="d-flex justify-content-between align-items-center mb-3">
                                                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
                                                     <a href="{{route('register.show' , $course->id)}}" class="get-started-btn rounded-sm">Get Started</a>
                                                 </div>
-                                                <p class="price">${{$course->feeses}}</p>
+                                                <p class="price">{{$course->amount}} SDG</p>
                                             </div>
 
                                             <div class="ml-1">
                                                 
-                                                <p style="font-size: 0.72rem; color:#ccc">{{$course->name}}</p>
+                                                <h3 style="">{{$course->name}}</h3>
                                                 <p>{{ Str::limit($course->description , 60 )}}</p>
     
                                                 <h3><a href="{{route('course.show', $course->id)}}">Course Details</a></h3>
@@ -52,7 +52,7 @@
                             <h3 class="mb-5">Best Course</h3>
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <img src="{{$lastCourse->image ?? ""}}" class="img-fluid" alt="">
+                                    <img src="{{$lastCourse->image ?? asset('assets/images/noImage.png')}}" class="img-fluid" alt="">
                                     <h3>{{$lastCourse->name ?? ""}}</h3>
                                     <p>
                                         {{$lastCourse->description ?? ""}}.
@@ -78,12 +78,12 @@
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Course amount</h5>
-                                        <p>${{$course->amount ?? ""}}</p>
+                                        <p>{{$course->amount ?? ""}} SDG</p>
                                       </div>
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
                                         <h5>Course Fee</h5>
-                                        <p>${{$lastCourse->feeses ?? ""}}</p>
+                                        <p>{{$lastCourse->feeses ?? ""}} SDG</p>
                                     </div>
 
                                     <div class="course-info d-flex justify-content-between align-items-center">
