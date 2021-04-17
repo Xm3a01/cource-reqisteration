@@ -19,13 +19,24 @@ class CourseController extends Controller
     
     public function index()
     {
+        $titles = [
+            'Name',
+            'H/week',
+            'Monthes',
+            'feeses',
+            'seats',
+            'description',
+        ];
+
+
         if(Auth::guard('admin')->user()->is_supervisor){
             $courses = Auth::guard('admin')->user()->courses()->paginate(100);
         } else {
 
             $courses = Course::latest()->paginate(100);
         }
-        return view('admins.dashboard.courses.index' , ['courses' => $courses , 'title' => 'Courses']);
+        // return $courses;
+        return view('admins.dashboard.courses.index' , ['courses' => $courses , 'title' => 'Courses' , 'titles' => $titles]);
     }
 
  

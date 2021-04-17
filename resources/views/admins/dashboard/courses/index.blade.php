@@ -12,7 +12,8 @@
             <h4 class="card-title"> All Courses</h4>
         </div>
         <div class="card-body custom-table">
-            <div class="table">
+            <div class="table" id="app">
+                {{-- <vue-table :courses = "{{ json_encode($courses) }}" :titles = {{json_encode($titles)}} ></vue-table> --}}
                 <table class="table">
                     <thead class=" text-primary">
                         <tr>
@@ -44,15 +45,18 @@
 
                                 @if (!Auth::guard('admin')->user()->is_supervisor)
                                 <td>
-                                    <form action="{{ route('courses.destroy', $course->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
+                                   
 
-                                        <a title="Edit" href="{{ route('courses.edit', $course->id) }}"
-                                            class="btn btn-round btn-primary"><i class="nc-icon nc-settings"></i></a>
-                                        <button title="Delete" type="submit" class="btn btn-round btn-danger"><i
-                                                class="nc-icon nc-simple-remove"></i></button>
-                                    </form>
+                                <a title="Edit" href="{{ route('courses.edit', $course->id) }}"
+                                    class="btn btn-round btn-primary"><i class="nc-icon nc-settings"></i></a>
+                                
+                                <button title="Delete" onclick="checkDelete(event)"  class="btn btn-round btn-danger"><i
+                                class="nc-icon nc-simple-remove"></i></button>
+
+                                <form style="display: none" action="{{ route('courses.destroy', $course->id) }}" method="POST" id ="deleteFrom">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
 
                                 </td>
                                 @else
@@ -77,7 +81,37 @@
             </div>
         </div>
 
+        {{-- <div id='modal_dialog'>
+            <div class='title'>
+            </div>
+            <input type='button' value='yes' id='btnYes' />
+            <input type='button' value='no' id='btnNo' />
+        </div> --}}
+
 
     </div>
 
+    {{-- <script src="/js/app.js"></script> --}}
 @stop
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    function checkDelete(e) {
+        e.preventDefault();
+        var deleteForm = document.getElementById('deleteFrom');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this ",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                deleteForm.submit();
+            }
+        });
+    }
+
+
+</script>

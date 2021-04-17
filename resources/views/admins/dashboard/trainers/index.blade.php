@@ -8,7 +8,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title"> All Events</h4>
+            <h4 class="card-title"> All trainer</h4>
         </div>
         <div class="card-body custom-table">
             <div class="table">

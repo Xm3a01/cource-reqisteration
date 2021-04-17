@@ -79,7 +79,7 @@
                                             <div class="mb-3">
                                                 <div class="loading">Loading</div>
                                                 <div class="error-message"></div>
-                                                <div class="sent-message">Your message has been sent. Thank you! <a href="" style="margin-left: auto">x</a></div>
+                                                <div class="sent-message">Your message has been sent. Thank you! <a href="" style="margin-right: 1px">x</a></div>
                                             </div>
                                             <div class="text-center"><button class=" rounded-sm" type="submit">Send Message</button></div>
                                         </form>
