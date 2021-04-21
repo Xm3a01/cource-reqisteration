@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\About;
 use App\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +30,7 @@ class AppServiceProvider extends ServiceProvider
         // Resources::withoutWrapping();
 
         View::share('setting', Setting::latest()->with('links')->first());
+        View::share('about', About::latest()->first());
+
     }
 }

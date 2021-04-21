@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
-                                <label>Course image</label>
+                                <label for="image"> <button type="submit" class="btn btn-primary ">Upload image</button></label>
                                 <input type="file" class="form-control" placeholder="" name="image">
 
                             </div>

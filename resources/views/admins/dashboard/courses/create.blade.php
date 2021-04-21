@@ -83,8 +83,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image"> Course image <a href="">attcah image</a> </label>
-                                <input type="file" class="form-control-file" placeholder="" name="image" id="image">
+                                <label for="image"> <button type="submit" class="btn btn-primary ">Upload image</button></label>
+                                <input type="file" class="form-control" placeholder="" name="image">
                             </div>
                         </div>
 

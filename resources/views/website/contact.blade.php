@@ -17,7 +17,6 @@
                         <div data-aos="fade-up" class="bg-white p-4 rounded-sm shadow-sm">
 
 
-
                             <div class="container" data-aos="fade-up">
 
                                 <div class="row mt-5">
@@ -27,19 +26,19 @@
                                             <div class="address">
                                                 <i class="icofont-google-map"></i>
                                                 <h4>Location:</h4>
-                                                <p>Manshyia,Khartoum , Bahri </p>
+                                                <p>{{$setting->location ?? ""}} </p>
                                             </div>
 
                                             <div class="email">
                                                 <i class="icofont-envelope"></i>
                                                 <h4>Email:</h4>
-                                                <p>info@courses-ccst.com</p>
+                                                <p>{{$setting->email ?? ""}}</p>
                                             </div>
 
                                             <div class="phone">
                                                 <i class="icofont-phone"></i>
                                                 <h4>Call:</h4>
-                                                <p>(249) 121117920</p>
+                                                <p>{{$setting->call ?? ""}}</p>
                                             </div>
 
                                         </div>
@@ -104,21 +103,18 @@
             </div><br><br>
             <div class="row">
                 <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-                    <img src="{{asset('assets/images/images/banner3.jpg')}}" class="img-fluid" alt="">
+                    <img src="{{$about->image ? $about->image : asset('assets/images/images/banner3.jpg')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                    <h3>{{$about->title ?? ""}}.</h3>
                     <p class="font-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore
-                        magna aliqua.
+                        {{$about->title ?? ""}}.
                     </p>
                     <ul>
-                        <li><i class="icofont-check-circled"></i>“Comboni College of Science and Technology .</li>
+                        {{-- <li><i class="icofont-check-circled"></i>“Comboni College of Science and Technology .</li>
                         <li><i class="icofont-check-circled"></i> is an international educational community that aims at
-                            fostering an inclusive society in which every member contributes </li>
-                        <li><i class="icofont-check-circled"></i> to the common good through his/her scientific skills and
-                            personal commitment and values”</li>
+                            fostering an inclusive society in which every member contributes </li> --}}
+                        <li><i class="icofont-check-circled"></i> {{$about->content ?? ""}}. </li>
                     </ul>
 
 

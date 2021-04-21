@@ -32,11 +32,20 @@ class IndexController extends Controller
 
     public function editProfile(Request $request , Admin $admin)
     {
-        if($request->has('password')) {
-            $request['password'] = \Hash::make($request->password);
+        if($request->has('password') && $request->password !="") {
+            $admin->password = \Hash::make($request->password);
         }
 
-        $admin->update($request->all());
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->save();
+
+        if($request->has('avatar')){
+            $admin->clearMediaCollection('admins');
+            $ex = $request->avatar->getClientOriginalExtension();
+            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+            $admin->addMedia($request->avatar)->usingFileName($fileName)->toMediaCollection('admins');
+        }
 
         \Session::flash('success' , 'Profile update successfully');
         return back();

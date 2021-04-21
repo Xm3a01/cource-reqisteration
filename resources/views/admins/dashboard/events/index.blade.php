@@ -29,15 +29,17 @@
                             <td>{{$event->place}}</td>
                             <td>{{Str::limit($event->content , 80 , '')}}</td>
                             <td>
-                                <form action="{{route('events.destroy' , $event->id)}}" method="post">  
-                                    @csrf
-                                    @method('DELETE')
-                                    <a  href="{{route('events.edit' , $event->id)}}" class="btn btn-round btn-primary"><i
-                                            class="nc-icon nc-settings"></i></a>
-    
-                                    <button   type="submit" class="btn btn-round btn-danger"><i
-                                            class="nc-icon nc-simple-remove"></i></button>
-                                </form>
+                                
+                            <a  href="{{route('events.edit' , $event->id)}}" class="btn btn-round btn-primary"><i
+                                    class="nc-icon nc-settings"></i></a>
+
+                            <button  onclick="checkDelete(event)" class="btn btn-round btn-danger"><i
+                                    class="nc-icon nc-simple-remove"></i></button>
+                        
+                            <form style="display: none" action="{{route('events.destroy' , $event->id)}}" method="post" id="deleteForm">  
+                                @csrf
+                                @method('DELETE')
+                             </form>
                             </td>
                         </tr>
                             

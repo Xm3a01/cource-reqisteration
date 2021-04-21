@@ -46,7 +46,7 @@ class ContactController extends Controller
              \Mail::send(new Contact($request));
                return 'OK';
            } catch(\Exception $e) {
-               return  'There is some error please load page Thanks !';
+               return  'This service may is not available right know thanks !';
             // return $e;
          }
     //     

@@ -34,7 +34,7 @@
                 <li class="nav-item btn-rotate dropdown">
                  <a class="nav-link dropdown-toggle" href="http://example.com" id="userAcountLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="nc-icon nc-single-02"></i>
+                        <img src="{{Auth::guard('admin')->user()->avatar ? Auth::guard('admin')->user()->avatar : asset('assets/images/noAvatr.jpeg')}}" alt="" height="40" width="40" style="border-radius: 50%">
                         <p>
                             <span class="d-lg-none d-md-block pl-3">{{ Auth::guard('admin')->user()->name }}</span>
                         </p>

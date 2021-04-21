@@ -14,9 +14,26 @@
   <script src="{{asset('assets/demo/demo.js')}}"></script>
   <script src="{{asset('vendor/js/toastr.min.js')}}" type="text/javascript"></script>
    <script src="{{asset('vendor/js/ui-toastr.min.js')}}" type="text/javascript"></script>
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
       demo.initChartsPages();
     });
+    function checkDelete(e) {
+        e.preventDefault();
+        var deleteForm = document.getElementById('deleteFrom');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this ",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                deleteForm.submit();
+            }
+        });
+    }
   </script>

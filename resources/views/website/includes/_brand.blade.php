@@ -1,24 +1,27 @@
 <section id="">
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade " data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    @if (is_null($setting))
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    @else
+    @foreach ($setting->images as $index => $image)
+      <li data-target="#carouselExampleIndicators" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
+    @endforeach
+    @endif
   </ol>
   <div class="carousel-inner">
+    @if (is_null($setting))
     <div class="carousel-item active">
-      <img class="d-block w-100" src="{{$setting->image ?? ""}}" height="500" alt="First slide">
+      <img class="d-block w-100" src="{{asset('assets/images/noImage.png')}}" height="500" alt="First slide">
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100 " src="{{$setting->image ?? ""}}" height="500" alt="Second slide">
+    @else
+    @foreach ($setting->images as $index => $image)
+    <div class="carousel-item {{$index == 0 ? 'active' : ''}}">
+      <img class="d-block w-100" src="{{$image->getUrl()}}" height="500" alt="First slide">
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100 " src="{{$setting->image ?? ""}}" height="500" alt="Third slide">
-      <div class="carousel-caption d-none d-md-block" style=" background: #2c2b2b8a; padding:5px">
-        <h5>Hello<h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis illum dolor cum at officia, eos placeat, necessitatibus saepe consequatur ipsa labore vitae mollitia iure aliquid tempore, cumque minus harum error.</p>
-      </div>
-    </div>
+    @endforeach
+    @endif
+
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

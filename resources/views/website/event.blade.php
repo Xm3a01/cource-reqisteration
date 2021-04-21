@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title"><a href="">{{$event->name}}</a></h5>
-                  <p class="font-italic text-center">{{$event->date}}</p>         {{--Sunday, September 26th at 7:00 pm--}}
+                  <p class="font-italic text-center">{{  date('D - M - Y h:i:s', strtotime($event->date))}}</p>         {{--Sunday, September 26th at 7:00 pm--}}
                   <p class="card-text">{{$event->content}}</p>
                 </div>
               </div>

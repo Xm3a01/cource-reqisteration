@@ -47,7 +47,7 @@ class Admin  extends Authenticatable implements HasMedia
 
     public function getAvatarAttribute()
     {
-        return $this->getFirstMediaUrl('avatars');
+        return $this->getFirstMediaUrl('admins');
     }
 
     // public function getProductAmountAttribute()

@@ -81,37 +81,13 @@
             </div>
         </div>
 
-        {{-- <div id='modal_dialog'>
-            <div class='title'>
-            </div>
-            <input type='button' value='yes' id='btnYes' />
-            <input type='button' value='no' id='btnNo' />
-        </div> --}}
-
-
     </div>
 
-    {{-- <script src="/js/app.js"></script> --}}
 @stop
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <script>
-    function checkDelete(e) {
-        e.preventDefault();
-        var deleteForm = document.getElementById('deleteFrom');
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this ",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                deleteForm.submit();
-            }
-        });
-    }
+    
 
 
 </script>

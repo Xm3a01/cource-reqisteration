@@ -21,7 +21,7 @@
                     <tbody>
 
                         <tr>
-                            <td><img src="{{ $setting->image ?? '' }}" alt="" height="40" width="40" class="rounded-full">
+                            <td><img src="{{ $setting->images[1]->getUrl() ?? '' }}" alt="" height="40" width="40" class="rounded-full">
                             </td>
                             <td>{{ $setting->name ?? '' }}</td>
                             <td>

@@ -11,7 +11,7 @@ class Setting extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name' , 'location' , 'email' , 'call'];
 
 
 
@@ -19,8 +19,10 @@ class Setting extends Model implements HasMedia
        return $this->morphMany(Link::class , 'linkable');
    }
 
-   public function getImageAttribute()
+   public function getImagesAttribute()
    {
-       return $this->getFirstMediaUrl('settings');
+       return $this->getMedia('settings');
    }
+
+//    getFirstMediaUrl
 }

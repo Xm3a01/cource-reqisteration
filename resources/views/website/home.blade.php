@@ -15,7 +15,7 @@
                             @foreach ($courses as $index => $course)     
                                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                     <div class="course-item">
-                                        <img src="{{ $course->image ? $course->image  : asset('assets/images/noImage.png') }} class="img-fluid" alt="..." style="width: 311.77px; height: 189.86px !important;">
+                                        <img src="{{ $course->image ? $course->image  : asset('assets/images/noImage.png') }}" class="img-fluid" alt="..." style="width: 311.77px; height: 189.86px !important;">
                                         <div class="course-content">
                                             <div class="d-flex justify-content-between align-items-center mb-3">
                                                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
@@ -43,13 +43,14 @@
                                 </div> <!-- End Course Item-->
                                 @endforeach
                             </div>
+                            <div class="col-md-6 offset-10 "><a href="{{route('web.courses')}}" class="get-started-btn rounded-sm">View all</a></div>
                         </div>
                     </section><!-- End Cource Details Tabs Section -->
                    <section class="break-section"></section>
                     <!-- ======= Cource Details Section ======= -->
                     <section id="course-details" class="course-details bg-white p-4 rounded-sm shadow-sm">
                         <div class="container" data-aos="fade-up">
-                            <h3 class="mb-5">Best Course</h3>
+                            <h3 class="mb-5">BEST COURSES</h3>
                             <div class="row">
                                 <div class="col-lg-8">
                                     <img src="{{$lastCourse->image ?? asset('assets/images/noImage.png')}}" class="img-fluid" alt="">
