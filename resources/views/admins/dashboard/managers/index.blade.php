@@ -51,16 +51,18 @@
                                    </td>
 
                                 <td>
-                                    <form action="{{ route('managers.destroy', $manager) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
+                                    
 
-                                        <a href="{{ route('managers.edit', $manager) }}" class="btn btn-round btn-primary"><i
-                                                class="nc-icon nc-settings"></i></a>
+                                    <a href="{{ route('managers.edit', $manager) }}" class="btn btn-round btn-primary"><i
+                                            class="nc-icon nc-settings"></i></a>
 
-                                        <button type="submit" class="btn btn-round btn-danger"><i
-                                                class="nc-icon nc-simple-remove"></i></button>
-                                    </form>
+                                    <button onclick="checkDelete(event)" class="btn btn-round btn-danger"><i
+                                            class="nc-icon nc-simple-remove"></i></button>
+
+                                    <form action="{{ route('managers.destroy', $manager) }}" method="POST" id="deleteFrom" style="display: none">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
 
                                 </td>
                             </tr>

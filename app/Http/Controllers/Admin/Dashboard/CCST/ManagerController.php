@@ -59,7 +59,7 @@ class ManagerController extends Controller
             $admin->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('avatars');
         }
 
-        \Session::flash('success' , 'تم حفظ المشرف بنجاح');
+        \Session::flash('success' , 'The manager add successfully');
         return redirect()->route('managers.index');
     }
 
@@ -109,7 +109,7 @@ class ManagerController extends Controller
             $manager->addMedia($request->image)->usingFileName($fileName)->toMediaCollection('avatars');
         }
 
-        \Session::flash('success' , 'تم تعديل المشرف بنجاح');
+        \Session::flash('success' , 'The manager update successfully');
         
          return redirect()->route('managers.index');
     
@@ -127,9 +127,13 @@ class ManagerController extends Controller
         if($manager->avater) {
            $manager->clearMediaCollection('avatars');
         }
+        foreach ($manager->courses  as $key => $course) {
+            $course->admin_id = null;
+            $course->save();
+        }
         $manager->delete();
 
-        \Session::flash('success' , 'تم حذف المشرف بنجاح');
+        \Session::flash('success' , 'The manager delete successfully');
         return redirect()->route('managers.index');
     }
 

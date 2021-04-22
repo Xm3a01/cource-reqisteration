@@ -59,16 +59,17 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <form action="{{ route('students.destroy', $student->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
+                                    
                                    
-                                    <a href="{{ route('students.edit', $student->id) }}"
-                                        class="btn btn-round btn-primary"><i class="nc-icon nc-settings"></i></a>
+                                <a href="{{ route('students.edit', $student->id) }}"
+                                    class="btn btn-round btn-primary"><i class="nc-icon nc-settings"></i></a>
 
-                                    <button type="submit" class="btn btn-round btn-danger"><i
-                                            class="nc-icon nc-simple-remove"></i></button>
-                                        </form>
+                                <button onclick="checkDelete(event)" class="btn btn-round btn-danger"><i
+                                        class="nc-icon nc-simple-remove"></i></button>
+                                <form action="{{ route('students.destroy', $student->id) }}" method="post" id="deleteFrom" style="display: none">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
 
                                 </td>
                             </tr>

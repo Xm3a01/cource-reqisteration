@@ -31,6 +31,8 @@ class StudentController extends Controller
 
         //student Store
         $request['password'] = \Hash::make($request->password);
+        $request['unHash_password'] = $request->password;
+        $request['payed'] = 1;
         $user = User::create($request->all());
 
         \Session::flash('success' , 'Student Successfully Create');
@@ -47,6 +49,7 @@ class StudentController extends Controller
     public function update(Request $request, User $student)
     {
         if($request->has('password')){
+            $request['unHash_password'] = $request->password;
             $request['password'] = \Hash::make($request->password);
         }
 

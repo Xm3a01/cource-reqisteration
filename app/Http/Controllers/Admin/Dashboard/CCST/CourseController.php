@@ -68,8 +68,9 @@ class CourseController extends Controller
    
     public function edit(Course $course)
     {
+        $trainers = Trainer::all();
         $managers = Admin::where('is_supervisor' , 1)->get();
-        return view('admins.dashboard.courses.edit' , ['course' => $course , 'managers' => $managers , 'title' => 'Course edit']);
+        return view('admins.dashboard.courses.edit' , ['course' => $course , 'managers' => $managers , 'title' => 'Course edit' , 'trainers' => $trainers]);
     }
 
     

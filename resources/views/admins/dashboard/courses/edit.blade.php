@@ -79,6 +79,19 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Trainer</label>
+                                <select name="trainer_id" class="form-control  select">
+                                    <option value="">Select Trainer</option>
+                                    @foreach ($trainers as $trainer)
+                                        <option value="{{$trainer->id}}">{{$trainer->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Description</label>

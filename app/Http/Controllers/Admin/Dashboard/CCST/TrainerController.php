@@ -22,6 +22,8 @@ class TrainerController extends Controller
     public function index()
     {
         $trainers = Trainer::paginate(100);
+        // $trainers->load('courses');
+        // return $trainers;
         // dd($events);
         return view('admins.dashboard.trainers.index' , ['trainers' => $trainers]);
     }
@@ -68,7 +70,7 @@ class TrainerController extends Controller
             }
         }
 
-        \Session::flash('success' , 'Ads save successfully');
+        \Session::flash('success' , 'Trainer save successfully');
         return redirect()->route('trainers.index');
     
   }
@@ -117,7 +119,7 @@ class TrainerController extends Controller
             }
         }
 
-        \Session::flash('success' , 'Ads update successfully');
+        \Session::flash('success' , 'Trainer update successfully');
         return redirect()->route('trainers.index');
 
     }
@@ -129,9 +131,14 @@ class TrainerController extends Controller
             $trainer->clearMediaCollection('trainers');
         }
 
+        foreach ($trainer->courses  as $key => $course) {
+            $course->trainer_id = null;
+            $course->save();
+        }
+
         $trainer->delete();
 
-        \Session::flash('success' , 'Ads delete successfully');
+        \Session::flash('success' , 'Trainer delete successfully');
         return redirect()->route('trainers.index');
     }
 }

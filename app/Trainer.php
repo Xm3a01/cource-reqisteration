@@ -23,7 +23,7 @@ class Trainer extends Model implements HasMedia
     
     public function courses()
     {
-        $this->hasMany(Course::class);
+        return $this->hasMany(Course::class);
     }
 
     public function getImageAttribute()

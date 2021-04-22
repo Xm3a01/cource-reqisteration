@@ -30,7 +30,7 @@ class Contact extends Mailable
     public function build()
     {
         return $this->from($this->contact->email)
-                     ->to('mohamed29w@gmail.com')
+                     ->to('info@courses-ccst.com')
                      ->subject('Contact Message')
                      ->markdown('emails.orders.contact');
     }
